@@ -2,23 +2,24 @@
 
 import * as path from 'path';
 import { workspace, ExtensionContext } from 'vscode';
-
 import {
   LanguageClient,
   LanguageClientOptions,
   ServerOptions,
   TransportKind
 } from 'vscode-languageclient/node';
+
 export function activate(context: ExtensionContext) {
 
-    // The server is implemented in node
     let serverExe = "dotnet";
 
-    // If the extension is launched in debug mode then the debug server options are used
-    // Otherwise the run options are used
+    let server = context.asAbsolutePath(
+      path.join("bin", "LSP-Server.dll")
+    )
+
     let serverOptions: ServerOptions = {
-        run: { command: serverExe, args: ["C:\\Users\\chris\\Documents\\Projekte\\Backlang-VSC\\LSP\\bin\\Debug\\net7.0\\LSP-Server.dll"] },
-        debug: { command: serverExe, args: ["C:\\Users\\chris\\Documents\\Projekte\\Backlang-VSC\\LSP\\bin\\Debug\\net7.0\\LSP-Server.dll"] }
+        run: { command: serverExe, args: [server] },
+        debug: { command: serverExe, args: [server] }
     }
 
     // Options to control the language client
@@ -39,6 +40,8 @@ export function activate(context: ExtensionContext) {
     const client = new LanguageClient('BacklangLanguageServer', 'Backlang Language Server', serverOptions, clientOptions);
     
     let disposable = client.start();
+
+    
 
     //context.subscriptions.push(disposable);
 }
