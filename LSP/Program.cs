@@ -2,11 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OmniSharp.Extensions.LanguageServer.Server;
+using System.Diagnostics;
 
 public static class Program
 {
     public static async Task Main(string[] args)
     {
+        Debugger.Break();
+
         var server = await LanguageServer.From(options =>
             options
                 .WithInput(Console.OpenStandardInput())
@@ -18,7 +21,7 @@ public static class Program
                 .WithHandler<CompletionHandler>()
              );
 
-        await server.WaitForExit;
+        await server.WasShutDown;
     }
 
     private static void ConfigureServices(IServiceCollection services)

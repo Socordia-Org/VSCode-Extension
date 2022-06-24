@@ -12,18 +12,17 @@ import {
 export function activate(context: ExtensionContext) {
 
     // The server is implemented in node
-    let serverExe = 'dotnet';
+    let serverExe = "dotnet";
 
     // If the extension is launched in debug mode then the debug server options are used
     // Otherwise the run options are used
     let serverOptions: ServerOptions = {
-        run: { command: serverExe, args: ['C:\Users\chris\Documents\Projekte\Backlang-VSC\LSP\bin\Debug\net7.0\LSP-Server.dll'] },
-        debug: { command: serverExe, args: ['C:\Users\chris\Documents\Projekte\Backlang-VSC\LSP\bin\Debug\net7.0\LSP-Server.dll'] }
+        run: { command: serverExe, args: ["C:\\Users\\chris\\Documents\\Projekte\\Backlang-VSC\\LSP\\bin\\Debug\\net7.0\\LSP-Server.dll"] },
+        debug: { command: serverExe, args: ["C:\\Users\\chris\\Documents\\Projekte\\Backlang-VSC\\LSP\\bin\\Debug\\net7.0\\LSP-Server.dll"] }
     }
 
     // Options to control the language client
     let clientOptions: LanguageClientOptions = {
-        // Register the server for plain text documents
         documentSelector: [
             {
                 pattern: '**/*.back',
@@ -31,15 +30,15 @@ export function activate(context: ExtensionContext) {
         ],
         synchronize: {
             // Synchronize the setting section 'languageServerExample' to the server
-            configurationSection: 'languageServerExample',
+            configurationSection: 'BacklangLanguageServer',
             fileEvents: workspace.createFileSystemWatcher('**/*.back')
         },
     }
 
     // Create the language client and start the client.
-    const client = new LanguageClient('languageServerExample', 'Language Server Example', serverOptions, clientOptions);
+    const client = new LanguageClient('BacklangLanguageServer', 'Backlang Language Server', serverOptions, clientOptions);
     
     let disposable = client.start();
 
-
+    //context.subscriptions.push(disposable);
 }
