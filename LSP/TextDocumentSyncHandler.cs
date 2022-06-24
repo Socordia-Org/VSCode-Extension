@@ -3,7 +3,6 @@ using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
-using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server.Capabilities;
 
 internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
@@ -17,12 +16,10 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
         }
     );
 
-    private readonly ILanguageServer _router;
     private SynchronizationCapability _capability;
 
-    public TextDocumentSyncHandler(ILanguageServer router, BufferManager bufferManager)
+    public TextDocumentSyncHandler(BufferManager bufferManager)
     {
-        _router = router;
         _bufferManager = bufferManager;
     }
 

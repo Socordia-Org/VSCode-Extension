@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LSP_Server;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OmniSharp.Extensions.LanguageServer.Server;
 
@@ -14,6 +15,7 @@ public static class Program
                 .AddDefaultLoggingProvider()
                 .WithServices(ConfigureServices)
                 .WithHandler<TextDocumentSyncHandler>()
+                .WithHandler<CompletionHandler>()
              );
 
         await server.WaitForExit;
@@ -22,5 +24,6 @@ public static class Program
     private static void ConfigureServices(IServiceCollection services)
     {
         services.AddSingleton<BufferManager>();
+        services.AddSingleton<TextDocumentSyncHandler>();
     }
 }
