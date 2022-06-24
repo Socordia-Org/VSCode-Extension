@@ -34,7 +34,7 @@ namespace LSP_Server
 
             if (buffer == null)
             {
-                //   return new CompletionList();
+                return new CompletionList();
             }
 
             var items = new List<CompletionItem>();
