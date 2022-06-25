@@ -3,57 +3,71 @@
     "displayName": "Backstention",
     "description": "Backlang is focused on language orientated programming",
     "icon": "media/logo.png",
-    "version": "0.0.54",
+    "version": "0.0.55",
     "publisher": "furesoft",
     "engines": {
         "vscode": "^1.66.0"
     },
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Backlang-Team/VSCode-Extension"
-	},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Backlang-Team/VSCode-Extension"
+    },
     "categories": [
         "Programming Languages",
-		"Languages"
+        "Languages"
     ],
-	"activationEvents": [
+    "activationEvents": [
         "onLanguage:back"
-    ],   
-    "main": "./out/extension",  
+    ],
+    "main": "./dist/extension",
     "contributes": {
-        "languages": [{
-            "id": "back",
-            "aliases": ["Backlang", "back"],
-            "extensions": [".back"],
-            "configuration": "./language-configuration.json",
-            "icon": {
-                "light": "./media/logo.svg",
-                "dark": "./media/logo.svg"
+        "languages": [
+            {
+                "id": "back",
+                "aliases": [
+                    "Backlang",
+                    "back"
+                ],
+                "extensions": [
+                    ".back"
+                ],
+                "configuration": "./language-configuration.json",
+                "icon": {
+                    "light": "./media/logo.svg",
+                    "dark": "./media/logo.svg"
+                }
             }
-        }],
-        "grammars": [{
-            "language": "back",
-            "scopeName": "source.back",
-            "path": "./syntaxes/back.tmLanguage.json"
-        }],
-		"snippets": [
+        ],
+        "grammars": [
+            {
+                "language": "back",
+                "scopeName": "source.back",
+                "path": "./syntaxes/back.tmLanguage.json"
+            }
+        ],
+        "snippets": [
             {
                 "language": "back",
                 "path": "./snippets/snippets.code-snippets"
             }
         ]
     },
-	"scripts": {
-		"vscode:prepublish": "npm install && npm run compile",
-		"compile": "tsc -b",
-		"watch": "tsc -b -w"
-	},
-	"devDependencies": {
-		"@types/node": "^18.0.0",
-		"@types/vscode": "^1.66.0",
-		"@types/mocha": "^9.1.1",		
-		"vscode-languageclient": "^8.0.1",
-		"eslint": "^8.18.0",
-		"typescript": "^4.5.5"
-	}
+    "scripts": {
+        "vscode:prepublish": "webpack --mode production",
+        "webpack": "webpack --mode development",
+        "webpack-dev": "webpack --mode development --watch",
+        "compile": "npm run webpack",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.0.0",
+        "@types/vscode": "^1.66.0",
+        "eslint": "^8.18.0",
+        "ts-loader": "^9.3.1",
+        "typescript": "^4.5.5",
+        "vscode-languageclient": "^8.0.1",
+        "webpack": "^5.73.0",
+        "webpack-cli": "^4.10.0"
+    }
 }

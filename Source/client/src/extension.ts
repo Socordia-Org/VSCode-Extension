@@ -1,7 +1,6 @@
 'use strict';
 
 import * as path from 'path';
-import * as vscode from 'vscode';
 import { workspace, ExtensionContext } from 'vscode';
 import {
   LanguageClient,
@@ -32,19 +31,12 @@ export function activate(context: ExtensionContext) {
         ],
         
         synchronize: {
-            // Synchronize the setting section 'languageServerExample' to the server
-            configurationSection: 'languageServerExample',
+            configurationSection: 'BacklangLanguageServer',
             fileEvents: workspace.createFileSystemWatcher('**/*.back')
         },
     }
 
-    // Create the language client and start the client.
-    const client = new LanguageClient('languageServerExample', 'Backlang Language Server', serverOptions, clientOptions);
+    const client = new LanguageClient('BacklangLanguageServer', 'Backlang Language Server', serverOptions, clientOptions);
     
-    let disposable = client.start();
-
-    
-
-
-    //context.subscriptions.push(disposable);
+    client.start();
 }
