@@ -32,13 +32,15 @@ namespace LSP_Server
             var documentPath = request.TextDocument.Uri.ToString();
             var buffer = _bufferManager.GetBuffer(documentPath);
 
-            if (buffer == null)
-            {
-                return new CompletionList();
-            }
-
             var items = new List<CompletionItem>();
-            items.Add(new CompletionItem() { Label = "kakadu", Kind = CompletionItemKind.Method });
+            items.Add(new CompletionItem() { Label = "if", Kind = CompletionItemKind.Keyword });
+            items.Add(new CompletionItem() { Label = "else", Kind = CompletionItemKind.Keyword });
+            items.Add(new CompletionItem() { Label = "let", Kind = CompletionItemKind.Keyword });
+            items.Add(new CompletionItem() { Label = "mut", Kind = CompletionItemKind.Keyword });
+            items.Add(new CompletionItem() { Label = "for", Kind = CompletionItemKind.Keyword });
+            items.Add(new CompletionItem() { Label = "while", Kind = CompletionItemKind.Keyword });
+            items.Add(new CompletionItem() { Label = "func", Kind = CompletionItemKind.Keyword });
+            items.Add(new CompletionItem() { Label = "class", Kind = CompletionItemKind.Keyword });
 
             return new CompletionList(items);
         }

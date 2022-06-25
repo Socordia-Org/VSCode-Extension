@@ -36,7 +36,7 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     TextDocumentOpenRegistrationOptions IRegistration<TextDocumentOpenRegistrationOptions, SynchronizationCapability>.GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)
     {
-        return null;
+        return new TextDocumentOpenRegistrationOptions() { DocumentSelector = _documentSelector };
     }
 
     TextDocumentCloseRegistrationOptions IRegistration<TextDocumentCloseRegistrationOptions, SynchronizationCapability>.GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)

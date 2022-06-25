@@ -6,7 +6,7 @@ public class BufferManager
 
     public string GetBuffer(string documentPath)
     {
-        return _buffers.TryGetValue(documentPath, out var buffer) ? buffer : null;
+        return _buffers.TryGetValue(documentPath, out var buffer) ? buffer : File.ReadAllText(documentPath);
     }
 
     public void UpdateBuffer(string documentPath, string buffer)
