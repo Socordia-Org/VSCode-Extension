@@ -1,4 +1,5 @@
-﻿using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
+﻿using Backlang.Codeanalysis.Parsing;
+using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
@@ -31,6 +32,8 @@ namespace LSP_Server
         {
             var documentPath = request.TextDocument.Uri.ToString();
             var buffer = _bufferManager.GetBuffer(documentPath);
+
+            var result = Parser.Parse(new SourceDocument(request.TextDocument.Uri.Path, buffer));
 
             var items = new List<CompletionItem>();
             items.Add(new CompletionItem() { Label = "module", Kind = CompletionItemKind.Keyword });

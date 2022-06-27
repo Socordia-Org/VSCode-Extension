@@ -8,11 +8,68 @@
     ".NETCoreApp,Version=v7.0": {
       "LSP-Server/1.0.0": {
         "dependencies": {
+          "Backlang.Codeanalysis": "1.0.42",
           "OmniSharp.Extensions.LanguageServer": "0.19.5",
           "System.Reactive.Reference": "4.4.0.0"
         },
         "runtime": {
           "LSP-Server.dll": {}
+        }
+      },
+      "Backlang.Codeanalysis/1.0.42": {
+        "dependencies": {
+          "Loyc.Syntax": "30.1.0",
+          "System.Runtime.Experimental": "7.0.0-preview.2.22152.2"
+        },
+        "runtime": {
+          "lib/net7.0/Backlang.Codeanalysis.dll": {
+            "assemblyVersion": "1.0.42.0",
+            "fileVersion": "1.0.42.0"
+          }
+        }
+      },
+      "Loyc.Collections/30.1.0": {
+        "dependencies": {
+          "Loyc.Essentials": "30.1.0",
+          "Loyc.Interfaces": "30.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Loyc.Collections.dll": {
+            "assemblyVersion": "30.1.0.0",
+            "fileVersion": "30.1.0.0"
+          }
+        }
+      },
+      "Loyc.Essentials/30.1.0": {
+        "dependencies": {
+          "Loyc.Interfaces": "30.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Loyc.Essentials.dll": {
+            "assemblyVersion": "30.1.0.0",
+            "fileVersion": "30.1.0.0"
+          }
+        }
+      },
+      "Loyc.Interfaces/30.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/Loyc.Interfaces.dll": {
+            "assemblyVersion": "30.1.0.0",
+            "fileVersion": "30.1.0.0"
+          }
+        }
+      },
+      "Loyc.Syntax/30.1.0": {
+        "dependencies": {
+          "Loyc.Collections": "30.1.0",
+          "Loyc.Essentials": "30.1.0",
+          "Loyc.Interfaces": "30.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Loyc.Syntax.dll": {
+            "assemblyVersion": "30.1.0.0",
+            "fileVersion": "30.1.0.0"
+          }
         }
       },
       "MediatR/8.1.0": {
@@ -413,6 +470,7 @@
         }
       },
       "System.Runtime.CompilerServices.Unsafe/4.7.1": {},
+      "System.Runtime.Experimental/7.0.0-preview.2.22152.2": {},
       "System.Security.AccessControl/4.6.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.0.0",
@@ -451,6 +509,41 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Backlang.Codeanalysis/1.0.42": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jzg8TGpElIV9d/XavHNd2pJ8P0AGC9Kpxr0TteNS0L0PuH0+I4XUH3wnW2OeYDB3ycjZ1ZZkBlPfdnlRHDOlPA==",
+      "path": "backlang.codeanalysis/1.0.42",
+      "hashPath": "backlang.codeanalysis.1.0.42.nupkg.sha512"
+    },
+    "Loyc.Collections/30.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yKdoaaFXRHuDZNxlSFpdys4piWPbbDDuKKB0k/b1FRC87+U58NtrdcgnXZZ7olQOlXfOCNWrjLlqaPm/cZPhZA==",
+      "path": "loyc.collections/30.1.0",
+      "hashPath": "loyc.collections.30.1.0.nupkg.sha512"
+    },
+    "Loyc.Essentials/30.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GlDyiRaqFOTIlqw8/c5CAj1GaoDjJzAosYwiTe1m4+yRmdgIkAIfAvjqRpsCctpjjDIvVMm3WzTd9A8XJREECw==",
+      "path": "loyc.essentials/30.1.0",
+      "hashPath": "loyc.essentials.30.1.0.nupkg.sha512"
+    },
+    "Loyc.Interfaces/30.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5BoKz72vtCVwoGZxMYkQign/L3PYP0j2gTr8D0PUVfX7+kMf8UFX0U/mSHp0/VT4OBpBxS3ZWlQM3/zhvl4DDg==",
+      "path": "loyc.interfaces/30.1.0",
+      "hashPath": "loyc.interfaces.30.1.0.nupkg.sha512"
+    },
+    "Loyc.Syntax/30.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NTZ/bzxv0t+Iv8HOVBurh8vLG4vb1VF9rLS6u3xYgCJ4z1esXLwSB9Eg5tQQGf7ABRFNPfVX673L10ymeuZ6EQ==",
+      "path": "loyc.syntax/30.1.0",
+      "hashPath": "loyc.syntax.30.1.0.nupkg.sha512"
     },
     "MediatR/8.1.0": {
       "type": "package",
@@ -710,6 +803,13 @@
       "sha512": "sha512-zOHkQmzPCn5zm/BH+cxC1XbUS3P4Yoi3xzW7eRgVpDR2tPGSzyMZ17Ig1iRkfJuY0nhxkQQde8pgePNiA7z7TQ==",
       "path": "system.runtime.compilerservices.unsafe/4.7.1",
       "hashPath": "system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512"
+    },
+    "System.Runtime.Experimental/7.0.0-preview.2.22152.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KBwz5DUbTGXgJbp76vI5616kuFSY8GMjk5GqyR9JxOWZGYfszJUZp9V0wMO/FPFQ763Y91dfj1DbXyDpNwe1Kw==",
+      "path": "system.runtime.experimental/7.0.0-preview.2.22152.2",
+      "hashPath": "system.runtime.experimental.7.0.0-preview.2.22152.2.nupkg.sha512"
     },
     "System.Security.AccessControl/4.6.0": {
       "type": "package",

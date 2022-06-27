@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿using Backlang.Codeanalysis.Parsing;
+using MediatR;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server.Capabilities;
 
 internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
@@ -16,11 +18,13 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
         }
     );
 
+    private readonly ILanguageServerFacade protocolProxy;
     private SynchronizationCapability _capability;
 
-    public TextDocumentSyncHandler(BufferManager bufferManager)
+    public TextDocumentSyncHandler(BufferManager bufferManager, ILanguageServerFacade protocolProxy)
     {
         _bufferManager = bufferManager;
+        this.protocolProxy = protocolProxy;
     }
 
     public TextDocumentSyncKind Change { get; } = TextDocumentSyncKind.Full;
@@ -60,6 +64,17 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
         var text = request.ContentChanges.FirstOrDefault()?.Text;
 
         _bufferManager.UpdateBuffer(documentPath, text);
+
+        var result = Parser.Parse(new SourceDocument(request.TextDocument.Uri.Path, text));
+
+        var diagnostics = new List<Diagnostic>();
+
+        foreach (var msg in result.Messages)
+        {
+            diagnostics.Add(new Diagnostic() { Message = msg.Text, Range = new OmniSharp.Extensions.LanguageServer.Protocol.Models.Range(msg.Line, msg.Column, msg.Line, msg.Column) });
+        }
+
+        this.protocolProxy.TextDocument.PublishDiagnostics(new PublishDiagnosticsParams() { Diagnostics = diagnostics });
 
         return Unit.Task;
     }
