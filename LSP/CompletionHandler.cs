@@ -36,6 +36,9 @@ namespace LSP_Server
             var result = Parser.Parse(new SourceDocument(request.TextDocument.Uri.Path, buffer));
 
             var items = new List<CompletionItem>();
+
+            //ToDo: Add Context based Completion
+
             items.Add(new CompletionItem() { Label = "module", Kind = CompletionItemKind.Keyword });
             items.Add(new CompletionItem() { Label = "using", Kind = CompletionItemKind.Keyword });
             items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword });
