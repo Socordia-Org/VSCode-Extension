@@ -8,3 +8,4 @@ obj/
 Source/package-lock.json
 
 Source/out/
+LSP/bin/*
