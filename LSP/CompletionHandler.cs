@@ -1,4 +1,5 @@
 ﻿using Backlang.Codeanalysis.Parsing;
+using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -32,6 +33,7 @@ namespace LSP_Server
         {
             var documentPath = request.TextDocument.Uri.ToString();
             var buffer = _bufferManager.GetBuffer(documentPath);
+            var lines = buffer.Split('\n');
 
             var result = Parser.Parse(new SourceDocument(request.TextDocument.Uri.Path, buffer));
 
@@ -39,12 +41,34 @@ namespace LSP_Server
 
             //ToDo: Add Context based Completion
 
+            LNode matchingNode = LNode.Missing;
+
+            foreach (var node in result.Tree)
+            {
+                node.RecursiveReplace((_) =>
+                {
+                    if (_.Range.Start.Line >= request.Position.Line)
+                    {
+                        matchingNode = _;
+                    }
+
+                    return _.Args;
+                });
+            }
+
+            if (matchingNode != LNode.Missing)
+            {
+                if (matchingNode.Calls(CodeSymbols.Fn))
+                {
+                    items.Add(new CompletionItem() { Label = "let", Kind = CompletionItemKind.Keyword });
+                }
+            }
+
             items.Add(new CompletionItem() { Label = "module", Kind = CompletionItemKind.Keyword });
             items.Add(new CompletionItem() { Label = "using", Kind = CompletionItemKind.Keyword });
             items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword });
             items.Add(new CompletionItem() { Label = "if", Kind = CompletionItemKind.Keyword });
             items.Add(new CompletionItem() { Label = "else", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "let", Kind = CompletionItemKind.Keyword });
             items.Add(new CompletionItem() { Label = "mut", Kind = CompletionItemKind.Keyword });
             items.Add(new CompletionItem() { Label = "const", Kind = CompletionItemKind.Keyword });
             items.Add(new CompletionItem() { Label = "global", Kind = CompletionItemKind.Keyword });
