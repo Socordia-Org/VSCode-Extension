@@ -1,10 +1,8 @@
-﻿using Backlang.Codeanalysis.Parsing;
-using Loyc.Syntax;
+﻿using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
-using System.Text;
 
 namespace LSP_Server
 {
@@ -24,28 +22,18 @@ namespace LSP_Server
         {
             return new HoverRegistrationOptions
             {
-                DocumentSelector = new DocumentSelector(
-                    new DocumentFilter()
-                    {
-                        Pattern = "**/*.back"
-                    }
-                )
+                DocumentSelector = TextDocumentSyncHandler.DocumentSelector
             };
         }
 
         public async Task<Hover> Handle(HoverParams request, CancellationToken token)
         {
             var documentPath = request.TextDocument.Uri.ToString();
-            var text = _bufferManager.GetBuffer(documentPath);
-
-            var filebody = Encoding.Default.GetBytes(text);
-            var document = new SourceFile<StreamCharSource>(new(new MemoryStream(filebody)), documentPath);
-            SyntaxTree.Factory = new(document);
-            var result = Parser.Parse(document);
+            var buffer = _bufferManager.GetBuffer(documentPath);
 
             LNode matchingNode = LNode.Missing;
 
-            foreach (var node in result.Tree)
+            foreach (var node in buffer.Args)
             {
                 node.ReplaceRecursive((_) =>
                 {

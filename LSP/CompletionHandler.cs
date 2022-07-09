@@ -1,5 +1,4 @@
-﻿using Backlang.Codeanalysis.Parsing;
-using Loyc.Syntax;
+﻿using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -20,12 +19,7 @@ namespace LSP_Server
         {
             return new CompletionRegistrationOptions
             {
-                DocumentSelector = new DocumentSelector(
-                    new DocumentFilter()
-                    {
-                        Pattern = "**/*.back"
-                    }
-                ),
+                DocumentSelector = TextDocumentSyncHandler.DocumentSelector,
                 ResolveProvider = false
             };
         }
@@ -35,19 +29,13 @@ namespace LSP_Server
             var documentPath = request.TextDocument.Uri.ToString();
             var buffer = _bufferManager.GetBuffer(documentPath);
 
-            var filebody = Encoding.Default.GetBytes(buffer);
-            var document = new SourceFile<StreamCharSource>(new(new MemoryStream(filebody)), documentPath);
-
-            SyntaxTree.Factory = new(document);
-            var result = Parser.Parse(document);
-
             var items = new List<CompletionItem>();
 
             //ToDo: Add Context based Completion
 
             LNode matchingNode = LNode.Missing;
 
-            foreach (var node in result.Tree)
+            foreach (var node in buffer.Args)
             {
                 node.RecursiveReplace((_) =>
                 {

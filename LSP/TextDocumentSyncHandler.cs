@@ -11,17 +11,15 @@ using System.Text;
 
 internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 {
-    private readonly BufferManager _bufferManager;
-
-    private readonly DocumentSelector _documentSelector = new DocumentSelector(
+    public static readonly DocumentSelector DocumentSelector = new DocumentSelector(
         new DocumentFilter()
         {
             Pattern = "**/*.back"
         }
     );
 
+    private readonly BufferManager _bufferManager;
     private readonly ILanguageServerFacade protocolProxy;
-    private SynchronizationCapability _capability;
 
     public TextDocumentSyncHandler(BufferManager bufferManager, ILanguageServerFacade protocolProxy)
     {
@@ -35,14 +33,14 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
     {
         return new TextDocumentChangeRegistrationOptions()
         {
-            DocumentSelector = _documentSelector,
+            DocumentSelector = DocumentSelector,
             SyncKind = Change
         };
     }
 
     TextDocumentOpenRegistrationOptions IRegistration<TextDocumentOpenRegistrationOptions, SynchronizationCapability>.GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)
     {
-        return new TextDocumentOpenRegistrationOptions() { DocumentSelector = _documentSelector };
+        return new TextDocumentOpenRegistrationOptions() { DocumentSelector = DocumentSelector };
     }
 
     TextDocumentCloseRegistrationOptions IRegistration<TextDocumentCloseRegistrationOptions, SynchronizationCapability>.GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)
@@ -64,13 +62,9 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
     {
         var documentPath = request.TextDocument.Uri.ToString();
         var text = request.ContentChanges.FirstOrDefault()?.Text;
+        (LNodeList Tree, List<Message> Messages) result = ParseDocument(documentPath, text);
 
-        _bufferManager.UpdateBuffer(documentPath, text);
-
-        var filebody = Encoding.Default.GetBytes(text);
-        var document = new SourceFile<StreamCharSource>(new(new MemoryStream(filebody)), documentPath);
-        SyntaxTree.Factory = new(document);
-        var result = Parser.Parse(document);
+        _bufferManager.AddOrUpdateBuffer(documentPath, SyntaxTree.Factory.AltList(result.Tree));
 
         var diagnostics = new List<Diagnostic>();
 
@@ -97,17 +91,31 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     public Task<Unit> Handle(DidOpenTextDocumentParams request, CancellationToken cancellationToken)
     {
-        _bufferManager.UpdateBuffer(request.TextDocument.Uri.ToString(), request.TextDocument.Text);
+        var tree = ParseDocument(request.TextDocument.Uri.ToString(), File.ReadAllText(request.TextDocument.Uri.ToString()));
+        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri.ToString(), SyntaxTree.Factory.AltList(tree.Tree));
+
         return Unit.Task;
     }
 
     public Task<Unit> Handle(DidCloseTextDocumentParams request, CancellationToken cancellationToken)
     {
+        //ToDo: remove tree from buffer
+
         return Unit.Task;
     }
 
     public Task<Unit> Handle(DidSaveTextDocumentParams request, CancellationToken cancellationToken)
     {
         return Unit.Task;
+    }
+
+    private static (LNodeList Tree, List<Message> Messages) ParseDocument(string documentPath, string? text)
+    {
+        var filebody = Encoding.Default.GetBytes(text);
+        var document = new SourceFile<StreamCharSource>(new(new MemoryStream(filebody)), documentPath);
+        SyntaxTree.Factory = new(document);
+        var result = Parser.Parse(document);
+
+        return result;
     }
 }
