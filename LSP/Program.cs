@@ -1,6 +1,7 @@
 ﻿using LSP_Server;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Server;
 using System.Diagnostics;
 
@@ -19,6 +20,8 @@ public static class Program
                 .WithServices(ConfigureServices)
                 .WithHandler<TextDocumentSyncHandler>()
                 .WithHandler<CompletionHandler>()
+                .WithHandler<HoverHandler>()
+                .WithServerInfo(new ServerInfo() { Name = "Backlang LSP", Version = "1.0.0.0" })
              );
 
         await server.WasShutDown;
