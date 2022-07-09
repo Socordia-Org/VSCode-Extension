@@ -89,35 +89,37 @@ namespace LSP_Server
                     items.Add(new CompletionItem() { Label = "false", Kind = CompletionItemKind.Value });
                 }
             }
+            else
+            {
+                items.Add(new CompletionItem() { Label = "module", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "using", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword });
 
-            items.Add(new CompletionItem() { Label = "module", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "using", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "const", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "global", Kind = CompletionItemKind.Keyword });
 
-            items.Add(new CompletionItem() { Label = "const", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "global", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "func", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "class", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "struct", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "enum", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "interface", Kind = CompletionItemKind.Keyword });
 
-            items.Add(new CompletionItem() { Label = "func", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "class", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "struct", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "enum", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "interface", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "implement", Kind = CompletionItemKind.Keyword });
 
-            items.Add(new CompletionItem() { Label = "implement", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "bitfield", Kind = CompletionItemKind.Keyword });
 
-            items.Add(new CompletionItem() { Label = "bitfield", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "type", Kind = CompletionItemKind.Keyword });
 
-            items.Add(new CompletionItem() { Label = "type", Kind = CompletionItemKind.Keyword });
-
-            items.Add(new CompletionItem() { Label = "public", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "protected", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "private", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "static", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "extern", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "abstract", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "override", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "operator", Kind = CompletionItemKind.Keyword });
-            items.Add(new CompletionItem() { Label = "none", Kind = CompletionItemKind.Value });
+                items.Add(new CompletionItem() { Label = "public", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "protected", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "private", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "static", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "extern", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "abstract", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "override", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "operator", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "none", Kind = CompletionItemKind.Value });
+            }
 
             return new CompletionList(items);
         }
