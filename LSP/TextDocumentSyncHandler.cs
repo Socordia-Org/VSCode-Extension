@@ -1,4 +1,5 @@
 ﻿using Backlang.Codeanalysis.Parsing;
+using Loyc.Syntax;
 using MediatR;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
@@ -6,6 +7,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server.Capabilities;
+using System.Text;
 
 internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 {
@@ -65,7 +67,10 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
         _bufferManager.UpdateBuffer(documentPath, text);
 
-        var result = Parser.Parse(new SourceDocument(request.TextDocument.Uri.Path, text));
+        var filebody = Encoding.Default.GetBytes(text);
+        var document = new SourceFile<StreamCharSource>(new(new MemoryStream(filebody)), documentPath);
+        SyntaxTree.Factory = new(document);
+        var result = Parser.Parse(document);
 
         var diagnostics = new List<Diagnostic>();
 

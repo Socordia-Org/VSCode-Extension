@@ -12,9 +12,9 @@ namespace LSP_Server
             else inLeft = range.Start.Column <= column;
 
             var inRight = false;
-            if (range.Start.Line > line) inRight = true;
-            else if (range.Start.Line < line) inRight = false;
-            else inRight = range.Start.Column >= column;
+            if (range.End.Line > line) inRight = true;
+            else if (range.End.Line < line) inRight = false;
+            else inRight = range.End.Column >= column;
 
             return inLeft && inRight;
         }
