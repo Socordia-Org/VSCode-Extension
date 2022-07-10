@@ -33,27 +33,37 @@ namespace LSP_Server
 
             LNode matchingNode = LNode.Missing;
 
-            foreach (var node in buffer.Args)
+            foreach (var node in buffer.Descendants())
             {
-                node.ReplaceRecursive((_) =>
+                if (node.Range.Contains(request.Position.Line, request.Position.Character))
                 {
-                    if (node.Range.Contains(request.Position.Line, request.Position.Character))
-                    {
-                        matchingNode = node;
-                    }
-
-                    return _;
-                }, LNode.ReplaceOpt.ReplaceRoot);
+                    matchingNode = node;
+                }
             }
 
             if (matchingNode != LNode.Missing)
             {
+                string content = "";
+
+                if (matchingNode.IsId)
+                {
+                    content = "An Identifier";
+                }
+                else if (matchingNode.Calls(CodeSymbols.Fn))
+                {
+                    content = "A Function";
+                }
+                else if (!matchingNode.Name.Name.StartsWith("#"))
+                {
+                    content = "A FunctionCall";
+                }
+
                 return new Hover()
                 {
                     Contents =
                         new MarkedStringsOrMarkupContent(new MarkupContent()
                         {
-                            Value = matchingNode.Name.Name + ": A Keyword",
+                            Value = matchingNode.Name.Name + ": " + content,
                             Kind = MarkupKind.PlainText
                         })
                 };
