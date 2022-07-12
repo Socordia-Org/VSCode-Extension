@@ -39,7 +39,7 @@ namespace LSP_Server
             {
                 node.RecursiveReplace((_) =>
                 {
-                    if (node.Range.Contains(request.Position.Line, request.Position.Character))
+                    if (node.Range.Contains(request.Position.Line + 1, request.Position.Character + 1))
                     {
                         matchingNode = node;
                     }
