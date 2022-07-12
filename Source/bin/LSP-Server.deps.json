@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "LSP-Server/1.0.0": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.44",
+          "Backlang.Codeanalysis": "1.0.49",
           "OmniSharp.Extensions.LanguageServer": "0.19.5",
           "System.Reactive.Reference": "4.4.0.0"
         },
@@ -16,15 +16,15 @@
           "LSP-Server.dll": {}
         }
       },
-      "Backlang.Codeanalysis/1.0.44": {
+      "Backlang.Codeanalysis/1.0.49": {
         "dependencies": {
           "Loyc.Syntax": "30.1.0",
           "System.Runtime.Experimental": "7.0.0-preview.2.22152.2"
         },
         "runtime": {
           "lib/net7.0/Backlang.Codeanalysis.dll": {
-            "assemblyVersion": "1.0.44.0",
-            "fileVersion": "1.0.44.0"
+            "assemblyVersion": "1.0.49.0",
+            "fileVersion": "1.0.49.0"
           }
         }
       },
@@ -510,12 +510,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Backlang.Codeanalysis/1.0.44": {
+    "Backlang.Codeanalysis/1.0.49": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+xOgDPeCiszuHuDR7PKuEoSb9FBXSrhAlBJE2pZ2+l/2bqcGCrvhZptfU4F7NWCtwbcOz+UExdsdkHtLMpr6ow==",
-      "path": "backlang.codeanalysis/1.0.44",
-      "hashPath": "backlang.codeanalysis.1.0.44.nupkg.sha512"
+      "sha512": "sha512-XsmVWgRrVcS81LFWHrXtjYm4CUtRwZtdwLlwBXwNoyUVUSh89hH4rFnG+eZQjD10YC00USgJXr1VS6u/1kWnpw==",
+      "path": "backlang.codeanalysis/1.0.49",
+      "hashPath": "backlang.codeanalysis.1.0.49.nupkg.sha512"
     },
     "Loyc.Collections/30.1.0": {
       "type": "package",
