@@ -7,7 +7,6 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server.Capabilities;
-using System.Text;
 
 internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 {
@@ -111,11 +110,6 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     private static (LNodeList Tree, List<Message> Messages) ParseDocument(string documentPath, string? text)
     {
-        var filebody = Encoding.Default.GetBytes(text);
-        var document = new SourceFile<StreamCharSource>(new(new MemoryStream(filebody)), documentPath);
-        SyntaxTree.Factory = new(document);
-        var result = Parser.Parse(document);
-
-        return result;
+        return Parser.Parse(new SourceDocument(documentPath, text));
     }
 }
