@@ -10,7 +10,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Server.Capabilities;
 
 internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 {
-    public static readonly DocumentSelector DocumentSelector = new DocumentSelector(
+    public static readonly DocumentSelector DocumentSelector = new(
         new DocumentFilter()
         {
             Pattern = "**/*.back"
@@ -33,7 +33,7 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
         return new TextDocumentChangeRegistrationOptions()
         {
             DocumentSelector = DocumentSelector,
-            SyncKind = Change
+            SyncKind = Change,
         };
     }
 
@@ -44,7 +44,7 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     TextDocumentCloseRegistrationOptions IRegistration<TextDocumentCloseRegistrationOptions, SynchronizationCapability>.GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)
     {
-        return null;
+        return new TextDocumentCloseRegistrationOptions() { DocumentSelector = DocumentSelector };
     }
 
     TextDocumentSaveRegistrationOptions IRegistration<TextDocumentSaveRegistrationOptions, SynchronizationCapability>.GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)
@@ -98,7 +98,7 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     public Task<Unit> Handle(DidCloseTextDocumentParams request, CancellationToken cancellationToken)
     {
-        //ToDo: remove tree from buffer
+        _bufferManager.Remove(request.TextDocument.Uri.ToString());
 
         return Unit.Task;
     }

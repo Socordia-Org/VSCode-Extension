@@ -19,4 +19,9 @@ public class BufferManager
     {
         _buffers.AddOrUpdate(documentPath, buffer, (k, v) => buffer);
     }
+
+    public void Remove(string documentPath)
+    {
+        _buffers.Remove(documentPath, out var _);
+    }
 }
