@@ -53,6 +53,10 @@ namespace LSP_Server
                 {
                     content = "A Function";
                 }
+                else if (matchingNode.Calls("#type"))
+                {
+                    content = "A Type";
+                }
                 else if (!matchingNode.Name.Name.StartsWith("#"))
                 {
                     content = "A FunctionCall";
