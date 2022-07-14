@@ -75,7 +75,7 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
                 CodeDescription = new CodeDescription() { Href = request.TextDocument.Uri.ToUri() },
                 Source = request.TextDocument.Uri.Path,
                 //ToDo: if message has the length of the area where the error occures use it
-                Range = new OmniSharp.Extensions.LanguageServer.Protocol.Models.Range(msg.Line - 2, msg.Column - 1, msg.Line - 2, msg.Column - 1)
+                Range = new OmniSharp.Extensions.LanguageServer.Protocol.Models.Range(msg.Line - 1, msg.Column - 1, msg.Line - 1, msg.Column - 1)
             });
         }
 
