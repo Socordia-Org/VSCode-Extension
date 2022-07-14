@@ -22,7 +22,8 @@ namespace LSP_Server
         {
             return new HoverRegistrationOptions
             {
-                DocumentSelector = TextDocumentSyncHandler.DocumentSelector
+                DocumentSelector = TextDocumentSyncHandler.DocumentSelector,
+                WorkDoneProgress = false
             };
         }
 
@@ -45,7 +46,7 @@ namespace LSP_Server
             {
                 string content = "";
 
-                if (matchingNode.IsId)
+                if (matchingNode.IsId && matchingNode.ArgCount == 0)
                 {
                     content = "An Identifier";
                 }
@@ -60,6 +61,17 @@ namespace LSP_Server
                 else if (!matchingNode.Name.Name.StartsWith("#"))
                 {
                     content = "A FunctionCall";
+                }
+                else
+                {
+                    if (matchingNode.ArgCount == 1 && matchingNode.Args[0].HasValue)
+                    {
+                        content = matchingNode.Name.Name;
+                    }
+                    else
+                    {
+                        content = matchingNode.ToString();
+                    }
                 }
 
                 return new Hover()
