@@ -46,13 +46,24 @@ namespace LSP_Server
                 }
             }
 
-            if (matchings.IsEmpty)
+            if (matchings.IsEmpty) // root scope
             {
                 items.Add(new CompletionItem() { Label = "using", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "implement", Kind = CompletionItemKind.Keyword });
+                items.Add(new CompletionItem() { Label = "func", Kind = CompletionItemKind.Keyword });
             }
 
             foreach (var matchingNode in matchings)
             {
+                if (matchingNode.Calls(CodeSymbols.UsingStmt))
+                {
+                    items.Clear();
+
+                    if (matchingNode.Args.Count == 1 && !matchingNode.Attrs.Contains(LNode.Id(CodeSymbols.As)))
+                    {
+                        items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword });
+                    }
+                }
                 if (matchingNode.Calls(CodeSymbols.Var))
                 {
                     items.Clear();
@@ -62,20 +73,17 @@ namespace LSP_Server
                         items.Add(new CompletionItem() { Label = "mut", Kind = CompletionItemKind.Keyword });
                     }
                 }
-                else if (matchingNode.Calls(CodeSymbols.UsingStmt))
-                {
-                    items.Clear();
-
-                    if (matchingNode.Args.Count == 1 && !matchingNode.Attrs.Contains(LNode.Id(CodeSymbols.As)))
-                    {
-                        items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword });
-                    }
-                }
                 else if (matchingNode.Calls(CodeSymbols.Fn))
                 {
                     items.Clear();
 
                     items.Add(new CompletionItem() { Label = "let", Kind = CompletionItemKind.Keyword });
+                }
+                else if (matchingNode.Calls(Symbols.Implementation))
+                {
+                    items.Clear();
+
+                    items.Add(new CompletionItem() { Label = "func", Kind = CompletionItemKind.Keyword });
                 }
             }
 
