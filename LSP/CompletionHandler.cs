@@ -1,4 +1,5 @@
-﻿using Loyc.Syntax;
+﻿using Backlang.Codeanalysis.Parsing.AST;
+using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -33,34 +34,45 @@ namespace LSP_Server
 
             var items = new List<CompletionItem>();
 
-            LNode matchingNode = LNode.Missing;
+            var matchings = new LNodeList();
 
             foreach (var node in buffer?.Descendants())
             {
+                if (node == null || node.Range.Length == 0) continue;
+
                 if (node != null && node.Range.Contains(request.Position.Line + 1, request.Position.Character + 1))
                 {
-                    matchingNode = node;
+                    matchings.Add(node);
                 }
             }
 
-            if (matchingNode.Calls(CodeSymbols.Fn) || matchingNode.Calls("'{}"))
-            {
-                items.Add(new CompletionItem() { Label = "let", Kind = CompletionItemKind.Keyword });
-            }
-            else if (matchingNode.Calls(CodeSymbols.Var))
-            {
-                if (!matchingNode.Attrs.Contains(LNode.Id("#mutable")))
-                {
-                    items.Add(new CompletionItem() { Label = "mut", Kind = CompletionItemKind.Keyword });
-                }
-            }
-            else if (matchingNode.Calls(CodeSymbols.UsingStmt))
-            {
-                items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword });
-            }
-            else
+            if (matchings.IsEmpty)
             {
                 items.Add(new CompletionItem() { Label = "using", Kind = CompletionItemKind.Keyword });
+            }
+
+            foreach (var matchingNode in matchings)
+            {
+                if (matchingNode.Calls(CodeSymbols.Var))
+                {
+                    items.Clear();
+
+                    if (!matchingNode.Attrs.Contains(LNode.Id(Symbols.Mutable)))
+                    {
+                        items.Add(new CompletionItem() { Label = "mut", Kind = CompletionItemKind.Keyword });
+                    }
+                }
+                else if (matchingNode.Calls(CodeSymbols.UsingStmt))
+                {
+                    items.Clear();
+                    items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword }); // does not work?
+                }
+                else if (matchingNode.Calls(CodeSymbols.Fn))
+                {
+                    items.Clear();
+
+                    items.Add(new CompletionItem() { Label = "let", Kind = CompletionItemKind.Keyword });
+                }
             }
 
             return new CompletionList(items);

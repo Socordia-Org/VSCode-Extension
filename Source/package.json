@@ -3,7 +3,7 @@
   "displayName": "Backstention",
   "description": "Backlang is focused on language orientated programming",
   "icon": "media/logo.png",
-  "version": "0.0.62",
+  "version": "0.0.63",
   "publisher": "furesoft",
   "engines": {
     "vscode": "^1.66.0"

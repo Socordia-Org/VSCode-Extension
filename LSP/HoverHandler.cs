@@ -36,6 +36,8 @@ namespace LSP_Server
 
             foreach (var node in buffer.Descendants())
             {
+                if (node.Range.Length == 0 || node == null) continue;
+
                 if (node.Range.Contains(request.Position.Line + 1, request.Position.Character + 1))
                 {
                     matchingNode = node;
@@ -46,32 +48,13 @@ namespace LSP_Server
             {
                 string content = "";
 
-                if (matchingNode.IsId && matchingNode.ArgCount == 0)
+                if (matchingNode.ArgCount == 1 && matchingNode.Args[0].HasValue)
                 {
-                    content = "An Identifier";
-                }
-                else if (matchingNode.Calls(CodeSymbols.Fn))
-                {
-                    content = "A Function";
-                }
-                else if (matchingNode.Calls("#type"))
-                {
-                    content = "A Type";
-                }
-                else if (!matchingNode.Name.Name.StartsWith("#"))
-                {
-                    content = "A FunctionCall";
+                    content = matchingNode.Name.Name;
                 }
                 else
                 {
-                    if (matchingNode.ArgCount == 1 && matchingNode.Args[0].HasValue)
-                    {
-                        content = matchingNode.Name.Name;
-                    }
-                    else
-                    {
-                        content = matchingNode.ToString();
-                    }
+                    content = matchingNode.ToString();
                 }
 
                 return new Hover()
