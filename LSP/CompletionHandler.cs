@@ -65,7 +65,11 @@ namespace LSP_Server
                 else if (matchingNode.Calls(CodeSymbols.UsingStmt))
                 {
                     items.Clear();
-                    items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword }); // does not work?
+
+                    if (matchingNode.Args.Count == 1 && !matchingNode.Attrs.Contains(LNode.Id(CodeSymbols.As)))
+                    {
+                        items.Add(new CompletionItem() { Label = "as", Kind = CompletionItemKind.Keyword });
+                    }
                 }
                 else if (matchingNode.Calls(CodeSymbols.Fn))
                 {
