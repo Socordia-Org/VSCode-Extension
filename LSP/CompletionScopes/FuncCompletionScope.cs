@@ -11,6 +11,8 @@ namespace LSP_Server
         public override IEnumerable<CompletionItem> GetItems(LNode node)
         {
             yield return new CompletionItem() { Label = "let", Kind = CompletionItemKind.Keyword };
+            yield return new CompletionItem() { Label = "if", Kind = CompletionItemKind.Keyword };
+            yield return new CompletionItem() { Label = "else", Kind = CompletionItemKind.Keyword };
         }
     }
 }
