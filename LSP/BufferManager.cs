@@ -1,9 +1,11 @@
 ﻿using Loyc.Syntax;
 using System.Collections.Concurrent;
 
+namespace LSP_Server;
+
 public class BufferManager
 {
-    private ConcurrentDictionary<string, LNode> _buffers = new();
+    private readonly ConcurrentDictionary<string, LNode> _buffers = new();
 
     public LNode GetBuffer(string documentPath)
     {

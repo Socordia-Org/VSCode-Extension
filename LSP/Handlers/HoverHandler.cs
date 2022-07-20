@@ -10,7 +10,6 @@ namespace LSP_Server
     {
         private readonly ILanguageServerFacade protocolProxy;
         private readonly BufferManager _bufferManager;
-        private SynchronizationCapability _capability;
 
         public HoverHandler(BufferManager bufferManager, ILanguageServerFacade protocolProxy)
         {
@@ -27,7 +26,7 @@ namespace LSP_Server
             };
         }
 
-        public async Task<Hover> Handle(HoverParams request, CancellationToken token)
+        public Task<Hover> Handle(HoverParams request, CancellationToken token)
         {
             var documentPath = request.TextDocument.Uri.ToString();
             var buffer = _bufferManager.GetBuffer(documentPath);
@@ -57,7 +56,7 @@ namespace LSP_Server
                     content = matchingNode.ToString();
                 }
 
-                return new Hover()
+                return Task.FromResult(new Hover()
                 {
                     Contents =
                         new MarkedStringsOrMarkupContent(new MarkupContent()
@@ -65,10 +64,10 @@ namespace LSP_Server
                             Value = matchingNode.Name.Name + ": " + content,
                             Kind = MarkupKind.PlainText
                         })
-                };
+                });
             }
 
-            return null;
+            return Task.FromResult<Hover>(null);
         }
     }
 }
