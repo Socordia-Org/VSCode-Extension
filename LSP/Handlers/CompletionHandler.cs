@@ -22,6 +22,7 @@ namespace LSP_Server
                 new FuncCompletionScope(),
                 new LetCompletionScope(),
                 new UsingCompletionScope(),
+                new InlineCompletionScope(),
             };
 
             _completionManager.RootScope = new RootCompletionScope();

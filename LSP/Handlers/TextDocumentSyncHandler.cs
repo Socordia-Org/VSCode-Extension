@@ -1,5 +1,6 @@
 ﻿using Backlang.Codeanalysis.Parsing;
 using Loyc.Syntax;
+using LSP_Server;
 using MediatR;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
