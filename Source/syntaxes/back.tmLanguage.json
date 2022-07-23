@@ -62,7 +62,7 @@
       "patterns": [
         {
           "name": "keyword.other.back",
-          "match": "\\b(inline|this|const|global|in|continue|return|where|type|mut|import|module|using|as|struct|class|interface|let|prop|get|set|implement|of|for|switch|case|break|when|if|else|match|with|while|static|operator|private|protected|public|internal|abstract|override|func|constructor|destructor|enum|union|bitfield|default|sizeof|and|or)\\b"
+          "match": "\\b(inline|this|const|global|in|continue|return|where|type|mut|import|module|using|as|struct|class|interface|let|prop|get|set|implement|of|for|switch|case|break|when|if|else|match|with|while|static|operator|private|protected|public|internal|abstract|override|func|macro|constructor|destructor|enum|union|bitfield|default|sizeof|and|or)\\b"
         }
       ]
     },
