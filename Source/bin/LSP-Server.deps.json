@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v7.0": {
       "LSP-Server/1.0.0": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.61",
+          "Backlang.Codeanalysis": "1.0.63",
+          "Backlang.Contracts": "1.0.63",
           "OmniSharp.Extensions.LanguageServer": "0.19.5",
           "System.Reactive.Reference": "4.4.0.0"
         },
@@ -16,15 +17,91 @@
           "LSP-Server.dll": {}
         }
       },
-      "Backlang.Codeanalysis/1.0.61": {
+      "Backlang.Codeanalysis/1.0.63": {
         "dependencies": {
           "Loyc.Syntax": "30.1.0",
           "System.Runtime.Experimental": "7.0.0-preview.2.22152.2"
         },
         "runtime": {
           "lib/net7.0/Backlang.Codeanalysis.dll": {
-            "assemblyVersion": "1.0.61.0",
-            "fileVersion": "1.0.61.0"
+            "assemblyVersion": "1.0.63.0",
+            "fileVersion": "1.0.63.0"
+          }
+        }
+      },
+      "Backlang.Contracts/1.0.63": {
+        "dependencies": {
+          "Backlang.Codeanalysis": "1.0.63",
+          "CommandLineParser": "2.9.1",
+          "Furesoft.Core.CodeDom.Backends": "1.0.36",
+          "Furesoft.Core.CodeDom.Compiler": "1.0.36",
+          "LeMP": "30.1.0",
+          "System.ComponentModel.Composition": "6.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/Backlang.Contracts.dll": {
+            "assemblyVersion": "1.0.63.0",
+            "fileVersion": "1.0.63.0"
+          }
+        }
+      },
+      "CommandLineParser/2.9.1": {
+        "runtime": {
+          "lib/netstandard2.0/CommandLine.dll": {
+            "assemblyVersion": "2.9.1.0",
+            "fileVersion": "2.9.1.0"
+          }
+        }
+      },
+      "Furesoft.Core.CodeDom/1.0.36": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Furesoft.Core.CodeDom.dll": {
+            "assemblyVersion": "1.0.36.0",
+            "fileVersion": "1.0.36.0"
+          }
+        }
+      },
+      "Furesoft.Core.CodeDom.Backends/1.0.36": {
+        "dependencies": {
+          "Furesoft.Core.CodeDom": "1.0.36",
+          "Furesoft.Core.CodeDom.Compiler": "1.0.36",
+          "Mono.Cecil": "0.11.4"
+        },
+        "runtime": {
+          "lib/net6.0/Furesoft.Core.CodeDom.Backends.dll": {
+            "assemblyVersion": "1.0.36.0",
+            "fileVersion": "1.0.36.0"
+          }
+        }
+      },
+      "Furesoft.Core.CodeDom.Compiler/1.0.36": {
+        "runtime": {
+          "lib/net6.0/Furesoft.Core.CodeDom.Compiler.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "LeMP/30.1.0": {
+        "dependencies": {
+          "Loyc.Collections": "30.1.0",
+          "Loyc.Ecs": "30.1.0",
+          "Loyc.Essentials": "30.1.0",
+          "Loyc.Interfaces": "30.1.0",
+          "Loyc.Syntax": "30.1.0",
+          "Loyc.Utilities": "30.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/LeMP.StdMacros.dll": {
+            "assemblyVersion": "30.1.0.0",
+            "fileVersion": "30.1.0.0"
+          },
+          "lib/netstandard2.0/LeMP.dll": {
+            "assemblyVersion": "30.1.0.0",
+            "fileVersion": "30.1.0.0"
           }
         }
       },
@@ -35,6 +112,20 @@
         },
         "runtime": {
           "lib/netstandard2.0/Loyc.Collections.dll": {
+            "assemblyVersion": "30.1.0.0",
+            "fileVersion": "30.1.0.0"
+          }
+        }
+      },
+      "Loyc.Ecs/30.1.0": {
+        "dependencies": {
+          "Loyc.Collections": "30.1.0",
+          "Loyc.Essentials": "30.1.0",
+          "Loyc.Interfaces": "30.1.0",
+          "Loyc.Syntax": "30.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Loyc.Ecs.dll": {
             "assemblyVersion": "30.1.0.0",
             "fileVersion": "30.1.0.0"
           }
@@ -59,6 +150,18 @@
           }
         }
       },
+      "Loyc.Math/30.1.0": {
+        "dependencies": {
+          "Loyc.Essentials": "30.1.0",
+          "Loyc.Interfaces": "30.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Loyc.Math.dll": {
+            "assemblyVersion": "30.1.0.0",
+            "fileVersion": "30.1.0.0"
+          }
+        }
+      },
       "Loyc.Syntax/30.1.0": {
         "dependencies": {
           "Loyc.Collections": "30.1.0",
@@ -67,6 +170,21 @@
         },
         "runtime": {
           "lib/netstandard2.0/Loyc.Syntax.dll": {
+            "assemblyVersion": "30.1.0.0",
+            "fileVersion": "30.1.0.0"
+          }
+        }
+      },
+      "Loyc.Utilities/30.1.0": {
+        "dependencies": {
+          "Loyc.Collections": "30.1.0",
+          "Loyc.Essentials": "30.1.0",
+          "Loyc.Interfaces": "30.1.0",
+          "Loyc.Math": "30.1.0",
+          "Loyc.Syntax": "30.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Loyc.Utilities.dll": {
             "assemblyVersion": "30.1.0.0",
             "fileVersion": "30.1.0.0"
           }
@@ -198,7 +316,7 @@
           }
         }
       },
-      "Microsoft.NETCore.Platforms/3.0.0": {},
+      "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
       "Microsoft.VisualStudio.Threading/16.7.56": {
         "dependencies": {
@@ -308,15 +426,51 @@
       },
       "Microsoft.Win32.Primitives/4.3.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
         }
       },
       "Microsoft.Win32.Registry/4.6.0": {
         "dependencies": {
-          "System.Security.AccessControl": "4.6.0",
+          "System.Security.AccessControl": "6.0.0",
           "System.Security.Principal.Windows": "4.6.0"
+        }
+      },
+      "Microsoft.Win32.SystemEvents/6.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Mono.Cecil/0.11.4": {
+        "runtime": {
+          "lib/netstandard2.0/Mono.Cecil.Mdb.dll": {
+            "assemblyVersion": "0.11.4.0",
+            "fileVersion": "0.11.4.0"
+          },
+          "lib/netstandard2.0/Mono.Cecil.Pdb.dll": {
+            "assemblyVersion": "0.11.4.0",
+            "fileVersion": "0.11.4.0"
+          },
+          "lib/netstandard2.0/Mono.Cecil.Rocks.dll": {
+            "assemblyVersion": "0.11.4.0",
+            "fileVersion": "0.11.4.0"
+          },
+          "lib/netstandard2.0/Mono.Cecil.dll": {
+            "assemblyVersion": "0.11.4.0",
+            "fileVersion": "0.11.4.0"
+          }
         }
       },
       "Nerdbank.Streams/2.6.81": {
@@ -405,16 +559,61 @@
         }
       },
       "System.Collections.Immutable/1.7.1": {},
+      "System.ComponentModel.Composition/6.0.0": {
+        "runtime": {
+          "lib/net6.0/System.ComponentModel.Composition.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "System.Configuration.ConfigurationManager/6.0.0": {
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "6.0.0",
+          "System.Security.Permissions": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "System.Drawing.Common/6.0.0": {
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/System.Drawing.Common.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/net6.0/System.Drawing.Common.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          },
+          "runtimes/win/lib/net6.0/System.Drawing.Common.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
       "System.Globalization/4.3.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
         }
       },
       "System.IO/4.3.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0",
           "System.Text.Encoding": "4.3.0",
@@ -440,7 +639,7 @@
       "System.Reactive/4.4.1": {},
       "System.Reflection/4.3.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.IO": "4.3.0",
           "System.Reflection.Primitives": "4.3.0",
@@ -449,14 +648,14 @@
       },
       "System.Reflection.Primitives/4.3.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
         }
       },
       "System.Resources.ResourceManager/4.3.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Globalization": "4.3.0",
           "System.Reflection": "4.3.0",
@@ -465,22 +664,45 @@
       },
       "System.Runtime/4.3.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0"
         }
       },
       "System.Runtime.CompilerServices.Unsafe/4.7.1": {},
       "System.Runtime.Experimental/7.0.0-preview.2.22152.2": {},
-      "System.Security.AccessControl/4.6.0": {
+      "System.Security.AccessControl/6.0.0": {},
+      "System.Security.Cryptography.ProtectedData/6.0.0": {
+        "runtime": {
+          "lib/net6.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "System.Security.Permissions/6.0.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
-          "System.Security.Principal.Windows": "4.6.0"
+          "System.Security.AccessControl": "6.0.0",
+          "System.Windows.Extensions": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/System.Security.Permissions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
         }
       },
       "System.Security.Principal.Windows/4.6.0": {},
       "System.Text.Encoding/4.3.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
         }
@@ -488,12 +710,31 @@
       "System.Threading.Channels/4.7.1": {},
       "System.Threading.Tasks/4.3.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
         }
       },
       "System.Threading.Tasks.Extensions/4.5.3": {},
+      "System.Windows.Extensions/6.0.0": {
+        "dependencies": {
+          "System.Drawing.Common": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/System.Windows.Extensions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net6.0/System.Windows.Extensions.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
       "System.Reactive.Reference/4.4.0.0": {
         "runtime": {
           "System.Reactive.dll": {
@@ -510,12 +751,54 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Backlang.Codeanalysis/1.0.61": {
+    "Backlang.Codeanalysis/1.0.63": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hThryJ+hzWNjgTGOPsaLpwZccDpEyLeJHOfCcmyeE6CLbIS/p/olTPsZi9KZB5o2D4xGKu3BKsDgx7dvoMnoCw==",
-      "path": "backlang.codeanalysis/1.0.61",
-      "hashPath": "backlang.codeanalysis.1.0.61.nupkg.sha512"
+      "sha512": "sha512-DFd78euCNlX01Ta8Lh6my8EI27fQYc52cnJFUdrw2V9UH3PGk4SvFwjd7SqZ/5KXxX1IxRWr5H69vMX5zXJ40w==",
+      "path": "backlang.codeanalysis/1.0.63",
+      "hashPath": "backlang.codeanalysis.1.0.63.nupkg.sha512"
+    },
+    "Backlang.Contracts/1.0.63": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rGNb6JoUaPywcbe7O8iCXY6drcKiX3WV3ZjCp+MotUZzjizz30WSPT60EFmQXKgvWC5qPIk+hqJhW3AvXr5iWQ==",
+      "path": "backlang.contracts/1.0.63",
+      "hashPath": "backlang.contracts.1.0.63.nupkg.sha512"
+    },
+    "CommandLineParser/2.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OE0sl1/sQ37bjVsPKKtwQlWDgqaxWgtme3xZz7JssWUzg5JpMIyHgCTY9MVMxOg48fJ1AgGT3tgdH5m/kQ5xhA==",
+      "path": "commandlineparser/2.9.1",
+      "hashPath": "commandlineparser.2.9.1.nupkg.sha512"
+    },
+    "Furesoft.Core.CodeDom/1.0.36": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7lg2rgZGus2vRbe6PHJFxeJt7Z709wGHs5W4RGOtIaPM5k/FuMzeWvGikAQWsnvNUIuL1nJOp8DMHHelicv9eQ==",
+      "path": "furesoft.core.codedom/1.0.36",
+      "hashPath": "furesoft.core.codedom.1.0.36.nupkg.sha512"
+    },
+    "Furesoft.Core.CodeDom.Backends/1.0.36": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TMqnaPKSMJ6b5Weqk+29dt2op5w30xxii7TXnPo6xxZpoKq5D4lcM171gua8u1Aa8efFqVDN0IFcTimEMfzFUw==",
+      "path": "furesoft.core.codedom.backends/1.0.36",
+      "hashPath": "furesoft.core.codedom.backends.1.0.36.nupkg.sha512"
+    },
+    "Furesoft.Core.CodeDom.Compiler/1.0.36": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QaHNnjgedKMtvQUS6MxU9tQ+5uE2QFMQJf3M54lfIcgyAE73N01Jj1+jLM2EJAKqVyjx/JFMTJ3iINUQaSiSYw==",
+      "path": "furesoft.core.codedom.compiler/1.0.36",
+      "hashPath": "furesoft.core.codedom.compiler.1.0.36.nupkg.sha512"
+    },
+    "LeMP/30.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ymRUKNsTJG6DL0Vhg372q1xt/nhBznMcHcGsFM9VbAm4VwFJweFYrI0qgCCC5BSOqhvvWst6MixGoZeNGAiNFA==",
+      "path": "lemp/30.1.0",
+      "hashPath": "lemp.30.1.0.nupkg.sha512"
     },
     "Loyc.Collections/30.1.0": {
       "type": "package",
@@ -523,6 +806,13 @@
       "sha512": "sha512-yKdoaaFXRHuDZNxlSFpdys4piWPbbDDuKKB0k/b1FRC87+U58NtrdcgnXZZ7olQOlXfOCNWrjLlqaPm/cZPhZA==",
       "path": "loyc.collections/30.1.0",
       "hashPath": "loyc.collections.30.1.0.nupkg.sha512"
+    },
+    "Loyc.Ecs/30.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7X48VPNuAXAltGlnWYT9UkcZ0+sbUTy3idovb96nUWkyuoiNfRsPN5m7a2YMRnbZU9vE2FIO3q+e2nM2WvjniA==",
+      "path": "loyc.ecs/30.1.0",
+      "hashPath": "loyc.ecs.30.1.0.nupkg.sha512"
     },
     "Loyc.Essentials/30.1.0": {
       "type": "package",
@@ -538,12 +828,26 @@
       "path": "loyc.interfaces/30.1.0",
       "hashPath": "loyc.interfaces.30.1.0.nupkg.sha512"
     },
+    "Loyc.Math/30.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R/mDH/Jv33lrEBrOUheeek7IVVibwKQDbgtf3/3BkWB3z9NfXc6dPrfWHno9QP0KgeOtueOY+XSz0XCWFyWF6Q==",
+      "path": "loyc.math/30.1.0",
+      "hashPath": "loyc.math.30.1.0.nupkg.sha512"
+    },
     "Loyc.Syntax/30.1.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-NTZ/bzxv0t+Iv8HOVBurh8vLG4vb1VF9rLS6u3xYgCJ4z1esXLwSB9Eg5tQQGf7ABRFNPfVX673L10ymeuZ6EQ==",
       "path": "loyc.syntax/30.1.0",
       "hashPath": "loyc.syntax.30.1.0.nupkg.sha512"
+    },
+    "Loyc.Utilities/30.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Tgx8pHP4tDo0sX1ZljjYN/vFqJfMtlYORC3ZdLQJPgDPgaxR3nSD/l/awmVzcXDoUtmZb/Uw2i7YB9Ei/TSxEA==",
+      "path": "loyc.utilities/30.1.0",
+      "hashPath": "loyc.utilities.30.1.0.nupkg.sha512"
     },
     "MediatR/8.1.0": {
       "type": "package",
@@ -629,12 +933,12 @@
       "path": "microsoft.extensions.primitives/2.0.0",
       "hashPath": "microsoft.extensions.primitives.2.0.0.nupkg.sha512"
     },
-    "Microsoft.NETCore.Platforms/3.0.0": {
+    "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TsETIgVJb/AKoYfSP+iCxkuly5d3inZjTdx/ItZLk2CxY85v8083OBS3uai84kK3/baLnS5/b5XGs6zR7SuuHQ==",
-      "path": "microsoft.netcore.platforms/3.0.0",
-      "hashPath": "microsoft.netcore.platforms.3.0.0.nupkg.sha512"
+      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "path": "microsoft.netcore.platforms/1.1.0",
+      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Targets/1.1.0": {
       "type": "package",
@@ -677,6 +981,20 @@
       "sha512": "sha512-Xuqo5Lf5h1eUAbT8sJwNSEgusyEcQQQcza1R8dxJ6q/1vLSU1SG/WxtgiCPAth14dz/IjBXCxWT/+6E9glX33w==",
       "path": "microsoft.win32.registry/4.6.0",
       "hashPath": "microsoft.win32.registry.4.6.0.nupkg.sha512"
+    },
+    "Microsoft.Win32.SystemEvents/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hqTM5628jSsQiv+HGpiq3WKBl2c8v1KZfby2J6Pr7pEPlK9waPdgEO6b8A/+/xn/yZ9ulv8HuqK71ONy2tg67A==",
+      "path": "microsoft.win32.systemevents/6.0.0",
+      "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
+    },
+    "Mono.Cecil/0.11.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IC1h5g0NeJGHIUgzM1P82ld57knhP0IcQfrYITDPXlNpMYGUrsG5TxuaWTjaeqDNQMBDNZkB8L0rBnwsY6JHuQ==",
+      "path": "mono.cecil/0.11.4",
+      "hashPath": "mono.cecil.0.11.4.nupkg.sha512"
     },
     "Nerdbank.Streams/2.6.81": {
       "type": "package",
@@ -733,6 +1051,27 @@
       "sha512": "sha512-B43Zsz5EfMwyEbnObwRxW5u85fzJma3lrDeGcSAV1qkhSRTNY5uXAByTn9h9ddNdhM+4/YoLc/CI43umjwIl9Q==",
       "path": "system.collections.immutable/1.7.1",
       "hashPath": "system.collections.immutable.1.7.1.nupkg.sha512"
+    },
+    "System.ComponentModel.Composition/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-60Qv+F7oxomOjJeTDA5Z4iCyFbQ0B/2Mi5HT+13pxxq0lVnu2ipbWMzFB+RWKr3wWKA8BSncXr9PH/fECwMX5Q==",
+      "path": "system.componentmodel.composition/6.0.0",
+      "hashPath": "system.componentmodel.composition.6.0.0.nupkg.sha512"
+    },
+    "System.Configuration.ConfigurationManager/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7T+m0kDSlIPTHIkPMIu6m6tV6qsMqJpvQWW2jIc2qi7sn40qxFo0q+7mEQAhMPXZHMKnWrnv47ntGlM/ejvw3g==",
+      "path": "system.configuration.configurationmanager/6.0.0",
+      "hashPath": "system.configuration.configurationmanager.6.0.0.nupkg.sha512"
+    },
+    "System.Drawing.Common/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
+      "path": "system.drawing.common/6.0.0",
+      "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
     },
     "System.Globalization/4.3.0": {
       "type": "package",
@@ -811,12 +1150,26 @@
       "path": "system.runtime.experimental/7.0.0-preview.2.22152.2",
       "hashPath": "system.runtime.experimental.7.0.0-preview.2.22152.2.nupkg.sha512"
     },
-    "System.Security.AccessControl/4.6.0": {
+    "System.Security.AccessControl/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gmlk6khICtVhiUnVBBtlsH0H/5QFDqhTZgtpp3AX14wWE6OIE+BX95NLD+X4AolXnIy/oXpNNmXYnsNfW1KuDQ==",
-      "path": "system.security.accesscontrol/4.6.0",
-      "hashPath": "system.security.accesscontrol.4.6.0.nupkg.sha512"
+      "sha512": "sha512-AUADIc0LIEQe7MzC+I0cl0rAT8RrTAKFHl53yHjEUzNVIaUlhFY11vc2ebiVJzVBuOzun6F7FBA+8KAbGTTedQ==",
+      "path": "system.security.accesscontrol/6.0.0",
+      "hashPath": "system.security.accesscontrol.6.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rp1gMNEZpvx9vP0JW0oHLxlf8oSiQgtno77Y4PLUBjSiDYoD77Y8uXHr1Ea5XG4/pIKhqAdxZ8v8OTUtqo9PeQ==",
+      "path": "system.security.cryptography.protecteddata/6.0.0",
+      "hashPath": "system.security.cryptography.protecteddata.6.0.0.nupkg.sha512"
+    },
+    "System.Security.Permissions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-T/uuc7AklkDoxmcJ7LGkyX1CcSviZuLCa4jg3PekfJ7SU0niF0IVTXwUiNVP9DSpzou2PpxJ+eNY2IfDM90ZCg==",
+      "path": "system.security.permissions/6.0.0",
+      "hashPath": "system.security.permissions.6.0.0.nupkg.sha512"
     },
     "System.Security.Principal.Windows/4.6.0": {
       "type": "package",
@@ -852,6 +1205,13 @@
       "sha512": "sha512-+MvhNtcvIbqmhANyKu91jQnvIRVSTiaOiFNfKWwXGHG48YAb4I/TyH8spsySiPYla7gKal5ZnF3teJqZAximyQ==",
       "path": "system.threading.tasks.extensions/4.5.3",
       "hashPath": "system.threading.tasks.extensions.4.5.3.nupkg.sha512"
+    },
+    "System.Windows.Extensions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
+      "path": "system.windows.extensions/6.0.0",
+      "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
     "System.Reactive.Reference/4.4.0.0": {
       "type": "reference",
