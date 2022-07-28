@@ -36,7 +36,7 @@ public class InlineCompletionScope : ContextCompletionHandler
         }
         else
         {
-            if (node.Args[1].Calls(Symbols.Block))
+            if (node.ArgCount == 2 && node.Args[1].Calls(Symbols.Block))
             {
                 var target = plugins.Targets
                                 .FirstOrDefault(_ => _.HasIntrinsics
