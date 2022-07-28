@@ -1,6 +1,5 @@
 using Backlang.Codeanalysis.Parsing.AST;
 using Backlang.Driver;
-using Backlang.Driver.Compiling.Targets.Dotnet;
 using Loyc;
 using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
