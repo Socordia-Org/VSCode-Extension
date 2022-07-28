@@ -35,7 +35,7 @@ namespace LSP_Server
             {
                 DocumentSelector = TextDocumentSyncHandler.DocumentSelector,
                 WorkDoneProgress = false,
-                TriggerCharacters = new[] { " ", "." },
+                TriggerCharacters = new[] { " ", ".", "(" },
             };
         }
 
