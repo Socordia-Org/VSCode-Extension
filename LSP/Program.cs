@@ -1,4 +1,5 @@
-﻿using LSP_Server;
+﻿using Backlang.Driver;
+using LSP_Server;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -31,5 +32,7 @@ public static class Program
     {
         services.AddSingleton<BufferManager>();
         services.AddSingleton<TextDocumentSyncHandler>();
+
+        services.AddSingleton(PluginContainer.Load());
     }
 }

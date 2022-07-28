@@ -1,4 +1,5 @@
-﻿using Loyc.Syntax;
+﻿using Backlang.Driver;
+using Loyc.Syntax;
 using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
@@ -12,7 +13,7 @@ namespace LSP_Server
 
         private ContextCompletionManager _completionManager;
 
-        public CompletionHandler(BufferManager bufferManager)
+        public CompletionHandler(BufferManager bufferManager, PluginContainer plugins)
         {
             _bufferManager = bufferManager;
 
@@ -22,7 +23,7 @@ namespace LSP_Server
                 new FuncCompletionScope(),
                 new LetCompletionScope(),
                 new UsingCompletionScope(),
-                new InlineCompletionScope(),
+                new InlineCompletionScope(plugins),
             };
 
             _completionManager.RootScope = new RootCompletionScope();
