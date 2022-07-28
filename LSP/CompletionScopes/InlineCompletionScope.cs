@@ -1,5 +1,6 @@
-﻿using Backlang.Codeanalysis.Parsing.AST;
+using Backlang.Codeanalysis.Parsing.AST;
 using Backlang.Driver;
+using Backlang.Driver.Compiling.Targets.Dotnet;
 using Loyc;
 using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -19,7 +20,6 @@ public class InlineCompletionScope : ContextCompletionHandler
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
-        //ToDo: find why inline has no range
         if (node.ArgCount == 0)
         {
             yield return new CompletionItem() { Label = "dotnet", Kind = CompletionItemKind.Value };
