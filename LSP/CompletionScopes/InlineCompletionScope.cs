@@ -49,6 +49,12 @@ public class InlineCompletionScope : ContextCompletionHandler
                     {
                         yield return new CompletionItem() { Label = name, Kind = CompletionItemKind.Method };
                     }
+
+                    var constants = GetAllConstants(target.IntrinsicType);
+                    foreach (var constant in constants)
+                    {
+                        yield return new CompletionItem() { Label = constant, Kind = CompletionItemKind.Constant };
+                    }
                 }
             }
         }
@@ -59,5 +65,18 @@ public class InlineCompletionScope : ContextCompletionHandler
         return intrinsicType.GetMethods()
             .Where(_ => _.IsStatic)
             .Select(_ => _.Name.ToLower()).Distinct().ToArray();
+    }
+
+    private IEnumerable<string> GetAllConstants(Type intrinsicType)
+    {
+        foreach (var field in intrinsicType.GetFields())
+        {
+            var names = Enum.GetNames(field.FieldType);
+
+            foreach (var name in names)
+            {
+                yield return name;
+            }
+        }
     }
 }
