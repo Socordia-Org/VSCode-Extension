@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Backlang.Codeanalysis" Version="1.0.63" />
-    <PackageReference Include="Backlang.Contracts" Version="1.0.63" />
+    <PackageReference Include="Backlang.Codeanalysis" Version="1.0.64" />
+    <PackageReference Include="Backlang.Contracts" Version="1.0.64" />
     <PackageReference Include="OmniSharp.Extensions.LanguageServer" Version="0.19.5" />
   </ItemGroup>
 

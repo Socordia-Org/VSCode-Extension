@@ -14,6 +14,8 @@ namespace LSP_Server
             yield return new CompletionItem() { Label = "if", Kind = CompletionItemKind.Keyword };
             yield return new CompletionItem() { Label = "else", Kind = CompletionItemKind.Keyword };
             yield return new CompletionItem() { Label = "inline", Kind = CompletionItemKind.Keyword };
+            yield return new CompletionItem() { Label = "while", Kind = CompletionItemKind.Keyword };
+            yield return new CompletionItem() { Label = "for", Kind = CompletionItemKind.Keyword };
         }
     }
 }
