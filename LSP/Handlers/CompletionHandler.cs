@@ -1,4 +1,4 @@
-﻿using Backlang.Driver;
+﻿using Backlang.Contracts;
 using Loyc.Syntax;
 using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
