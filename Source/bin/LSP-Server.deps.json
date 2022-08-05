@@ -8,8 +8,8 @@
     ".NETCoreApp,Version=v7.0": {
       "LSP-Server/1.0.0": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.63",
-          "Backlang.Contracts": "1.0.63",
+          "Backlang.Codeanalysis": "1.0.69",
+          "Backlang.Contracts": "1.0.69",
           "OmniSharp.Extensions.LanguageServer": "0.19.5",
           "System.Reactive.Reference": "4.4.0.0"
         },
@@ -17,31 +17,31 @@
           "LSP-Server.dll": {}
         }
       },
-      "Backlang.Codeanalysis/1.0.63": {
+      "Backlang.Codeanalysis/1.0.69": {
         "dependencies": {
           "Loyc.Syntax": "30.1.0",
           "System.Runtime.Experimental": "7.0.0-preview.2.22152.2"
         },
         "runtime": {
           "lib/net7.0/Backlang.Codeanalysis.dll": {
-            "assemblyVersion": "1.0.63.0",
-            "fileVersion": "1.0.63.0"
+            "assemblyVersion": "1.0.69.0",
+            "fileVersion": "1.0.69.0"
           }
         }
       },
-      "Backlang.Contracts/1.0.63": {
+      "Backlang.Contracts/1.0.69": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.63",
+          "Backlang.Codeanalysis": "1.0.69",
           "CommandLineParser": "2.9.1",
-          "Furesoft.Core.CodeDom.Backends": "1.0.36",
-          "Furesoft.Core.CodeDom.Compiler": "1.0.36",
+          "Furesoft.Core.CodeDom.Backends": "1.0.40",
+          "Furesoft.Core.CodeDom.Compiler": "1.0.40",
           "LeMP": "30.1.0",
           "System.ComponentModel.Composition": "6.0.0"
         },
         "runtime": {
           "lib/net7.0/Backlang.Contracts.dll": {
-            "assemblyVersion": "1.0.63.0",
-            "fileVersion": "1.0.63.0"
+            "assemblyVersion": "1.0.69.0",
+            "fileVersion": "1.0.69.0"
           }
         }
       },
@@ -53,31 +53,31 @@
           }
         }
       },
-      "Furesoft.Core.CodeDom/1.0.36": {
+      "Furesoft.Core.CodeDom/1.0.40": {
         "dependencies": {
           "System.Configuration.ConfigurationManager": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/Furesoft.Core.CodeDom.dll": {
-            "assemblyVersion": "1.0.36.0",
-            "fileVersion": "1.0.36.0"
+            "assemblyVersion": "1.0.40.0",
+            "fileVersion": "1.0.40.0"
           }
         }
       },
-      "Furesoft.Core.CodeDom.Backends/1.0.36": {
+      "Furesoft.Core.CodeDom.Backends/1.0.40": {
         "dependencies": {
-          "Furesoft.Core.CodeDom": "1.0.36",
-          "Furesoft.Core.CodeDom.Compiler": "1.0.36",
+          "Furesoft.Core.CodeDom": "1.0.40",
+          "Furesoft.Core.CodeDom.Compiler": "1.0.40",
           "Mono.Cecil": "0.11.4"
         },
         "runtime": {
           "lib/net6.0/Furesoft.Core.CodeDom.Backends.dll": {
-            "assemblyVersion": "1.0.36.0",
-            "fileVersion": "1.0.36.0"
+            "assemblyVersion": "1.0.40.0",
+            "fileVersion": "1.0.40.0"
           }
         }
       },
-      "Furesoft.Core.CodeDom.Compiler/1.0.36": {
+      "Furesoft.Core.CodeDom.Compiler/1.0.40": {
         "runtime": {
           "lib/net6.0/Furesoft.Core.CodeDom.Compiler.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -751,19 +751,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Backlang.Codeanalysis/1.0.63": {
+    "Backlang.Codeanalysis/1.0.69": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-DFd78euCNlX01Ta8Lh6my8EI27fQYc52cnJFUdrw2V9UH3PGk4SvFwjd7SqZ/5KXxX1IxRWr5H69vMX5zXJ40w==",
-      "path": "backlang.codeanalysis/1.0.63",
-      "hashPath": "backlang.codeanalysis.1.0.63.nupkg.sha512"
+      "sha512": "sha512-BWljiOaopa/CNH6vVRvoYPbR3xW0Alnm4gLTz5ZCogA9j97zCGxG6+9NqlZD0M3AI1ek22OzWR7pXWv+j3p2fg==",
+      "path": "backlang.codeanalysis/1.0.69",
+      "hashPath": "backlang.codeanalysis.1.0.69.nupkg.sha512"
     },
-    "Backlang.Contracts/1.0.63": {
+    "Backlang.Contracts/1.0.69": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rGNb6JoUaPywcbe7O8iCXY6drcKiX3WV3ZjCp+MotUZzjizz30WSPT60EFmQXKgvWC5qPIk+hqJhW3AvXr5iWQ==",
-      "path": "backlang.contracts/1.0.63",
-      "hashPath": "backlang.contracts.1.0.63.nupkg.sha512"
+      "sha512": "sha512-MzXZoxbofH0xXgQi46w3aRY/5YTH1XRln61ZXEV58SwrUvZr90ea2DA6AFEEWMr7hxnTlzlLbxwalupZGLMwbg==",
+      "path": "backlang.contracts/1.0.69",
+      "hashPath": "backlang.contracts.1.0.69.nupkg.sha512"
     },
     "CommandLineParser/2.9.1": {
       "type": "package",
@@ -772,26 +772,26 @@
       "path": "commandlineparser/2.9.1",
       "hashPath": "commandlineparser.2.9.1.nupkg.sha512"
     },
-    "Furesoft.Core.CodeDom/1.0.36": {
+    "Furesoft.Core.CodeDom/1.0.40": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7lg2rgZGus2vRbe6PHJFxeJt7Z709wGHs5W4RGOtIaPM5k/FuMzeWvGikAQWsnvNUIuL1nJOp8DMHHelicv9eQ==",
-      "path": "furesoft.core.codedom/1.0.36",
-      "hashPath": "furesoft.core.codedom.1.0.36.nupkg.sha512"
+      "sha512": "sha512-7C9HgtVFKtbwab9slj4qjInH7cZ4hqfkbBQKwY9euSbJFycF/T4Qjid67h9r/3Oh7xH8oiqvrfSeJOAw/7R+wA==",
+      "path": "furesoft.core.codedom/1.0.40",
+      "hashPath": "furesoft.core.codedom.1.0.40.nupkg.sha512"
     },
-    "Furesoft.Core.CodeDom.Backends/1.0.36": {
+    "Furesoft.Core.CodeDom.Backends/1.0.40": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TMqnaPKSMJ6b5Weqk+29dt2op5w30xxii7TXnPo6xxZpoKq5D4lcM171gua8u1Aa8efFqVDN0IFcTimEMfzFUw==",
-      "path": "furesoft.core.codedom.backends/1.0.36",
-      "hashPath": "furesoft.core.codedom.backends.1.0.36.nupkg.sha512"
+      "sha512": "sha512-OtdICB4dBabnWK1Y595/qOmY9BxLrw+bKVrWFG2l/Wx9aSvRR2reyen5eG9ObjMZeSnb5QNMNWHakZIkghjFkw==",
+      "path": "furesoft.core.codedom.backends/1.0.40",
+      "hashPath": "furesoft.core.codedom.backends.1.0.40.nupkg.sha512"
     },
-    "Furesoft.Core.CodeDom.Compiler/1.0.36": {
+    "Furesoft.Core.CodeDom.Compiler/1.0.40": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-QaHNnjgedKMtvQUS6MxU9tQ+5uE2QFMQJf3M54lfIcgyAE73N01Jj1+jLM2EJAKqVyjx/JFMTJ3iINUQaSiSYw==",
-      "path": "furesoft.core.codedom.compiler/1.0.36",
-      "hashPath": "furesoft.core.codedom.compiler.1.0.36.nupkg.sha512"
+      "sha512": "sha512-d04rx5pUiCQvTiUp18bFkzJQtZ5sxoAGcWVyi5/RMZnVenOpRfOv09P4j6UPppFmfHFh3yGKH5kNE2exyGGuKw==",
+      "path": "furesoft.core.codedom.compiler/1.0.40",
+      "hashPath": "furesoft.core.codedom.compiler.1.0.40.nupkg.sha512"
     },
     "LeMP/30.1.0": {
       "type": "package",
