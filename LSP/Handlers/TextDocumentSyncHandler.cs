@@ -8,6 +8,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server.Capabilities;
+using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 {
@@ -75,12 +76,12 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
                 Message = msg.Text,
                 CodeDescription = new CodeDescription() { Href = request.TextDocument.Uri.ToUri() },
                 Source = request.TextDocument.Uri.Path,
-                //ToDo: if message has the length of the area where the error occures use it
-                Range = new OmniSharp.Extensions.LanguageServer.Protocol.Models.Range(msg.Line - 1, msg.Column - 1, msg.Line - 1, msg.Column - 1)
+                Range = new Range(msg.Range.Start.Line - 1, msg.Range.Start.Column - 1,
+                msg.Range.End.Line - 1, msg.Range.End.Column - 1)
             });
         }
 
-        this.protocolProxy.TextDocument.PublishDiagnostics(new PublishDiagnosticsParams()
+        protocolProxy.TextDocument.PublishDiagnostics(new PublishDiagnosticsParams()
         {
             Diagnostics = diagnostics,
             Uri = request.TextDocument.Uri
