@@ -27,7 +27,7 @@ namespace LSP_Server.Handlers
             };
         }
 
-        public Task<Hover> Handle(HoverParams request, CancellationToken token)
+        public Task<Hover?> Handle(HoverParams request, CancellationToken token)
         {
             var documentPath = request.TextDocument.Uri.ToString();
             var buffer = _bufferManager.GetBuffer(documentPath);
@@ -57,7 +57,7 @@ namespace LSP_Server.Handlers
                     content = matchingNode.ToString();
                 }
 
-                return Task.FromResult(new Hover()
+                return Task.FromResult<Hover?>(new Hover()
                 {
                     Contents =
                         new MarkedStringsOrMarkupContent(new MarkupContent()
@@ -68,7 +68,7 @@ namespace LSP_Server.Handlers
                 });
             }
 
-            return Task.FromResult<Hover>(null);
+            return Task.FromResult<Hover?>(null);
         }
     }
 }
