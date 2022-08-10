@@ -10,9 +10,9 @@ namespace LSP_Server.Handlers;
 
 public partial class CompletionHandler : ICompletionHandler
 {
-    private BufferManager _bufferManager;
+    private readonly BufferManager _bufferManager;
 
-    private ContextCompletionManager _completionManager;
+    private readonly ContextCompletionManager _completionManager;
 
     public CompletionHandler(BufferManager bufferManager, PluginContainer plugins)
     {
@@ -38,7 +38,7 @@ public partial class CompletionHandler : ICompletionHandler
         {
             DocumentSelector = TextDocumentSyncHandler.DocumentSelector,
             WorkDoneProgress = false,
-            TriggerCharacters = new[] { " ", ".", "(" },
+            TriggerCharacters = new[] { " ", ".", "(", },
         };
     }
 

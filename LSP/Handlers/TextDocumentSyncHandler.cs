@@ -63,13 +63,13 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
     {
         var documentPath = request.TextDocument.Uri.ToString();
         var text = request.ContentChanges.FirstOrDefault()?.Text;
-        (LNodeList Tree, List<Message> Messages) result = ParseDocument(documentPath, text);
+        (LNodeList Tree, List<Message> Messages) = ParseDocument(documentPath, text);
 
-        _bufferManager.AddOrUpdateBuffer(documentPath, SyntaxTree.Factory.AltList(result.Tree));
+        _bufferManager.AddOrUpdateBuffer(documentPath, SyntaxTree.Factory.AltList(Tree));
 
         var diagnostics = new List<Diagnostic>();
 
-        foreach (var msg in result.Messages)
+        foreach (var msg in Messages)
         {
             diagnostics.Add(new Diagnostic()
             {
@@ -92,8 +92,8 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     public Task<Unit> Handle(DidOpenTextDocumentParams request, CancellationToken cancellationToken)
     {
-        var tree = ParseDocument(request.TextDocument.Uri.ToString(), File.ReadAllText(request.TextDocument.Uri.ToString()));
-        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri.ToString(), SyntaxTree.Factory.AltList(tree.Tree));
+        var (Tree, _) = ParseDocument(request.TextDocument.Uri.ToString(), File.ReadAllText(request.TextDocument.Uri.ToString()));
+        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri.ToString(), SyntaxTree.Factory.AltList(Tree));
 
         return Unit.Task;
     }
