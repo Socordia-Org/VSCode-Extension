@@ -1,10 +1,11 @@
 ﻿using Loyc.Syntax;
+using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 
-namespace LSP_Server
+namespace LSP_Server.Handlers
 {
     public class HoverHandler : IHoverHandler
     {

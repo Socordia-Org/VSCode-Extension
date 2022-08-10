@@ -6,7 +6,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
-namespace LSP_Server;
+namespace LSP_Server.Handlers;
 
 public partial class CompletionHandler : ICompletionHandler
 {

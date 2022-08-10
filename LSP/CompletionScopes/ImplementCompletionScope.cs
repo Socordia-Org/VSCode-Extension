@@ -1,9 +1,10 @@
 ﻿using Backlang.Codeanalysis.Parsing.AST;
 using Loyc;
 using Loyc.Syntax;
+using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
-namespace LSP_Server
+namespace LSP_Server.CompletionScopes
 {
     public class ImplementCompletionScope : ContextCompletionHandler
     {

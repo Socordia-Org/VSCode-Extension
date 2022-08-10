@@ -1,5 +1,6 @@
 ﻿using Backlang.Contracts;
 using LSP_Server;
+using LSP_Server.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;

@@ -1,6 +1,6 @@
 ﻿using Loyc.Syntax;
 
-namespace LSP_Server
+namespace LSP_Server.Core
 {
     public static class SourceRangeExtensions
     {

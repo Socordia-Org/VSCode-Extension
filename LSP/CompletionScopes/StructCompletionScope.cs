@@ -1,5 +1,6 @@
 ﻿using Loyc;
 using Loyc.Syntax;
+using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
 namespace LSP_Server.CompletionScopes
