@@ -1,5 +1,6 @@
 ﻿using Backlang.Contracts;
 using Loyc.Syntax;
+using LSP_Server.CompletionScopes;
 using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
@@ -23,6 +24,7 @@ public partial class CompletionHandler : ICompletionHandler
             new FuncCompletionScope(),
             new LetCompletionScope(),
             new UsingCompletionScope(),
+            new StructCompletionScope(),
             new InlineCompletionScope(plugins),
         };
 
