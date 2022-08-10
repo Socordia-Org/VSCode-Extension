@@ -25,6 +25,7 @@ public partial class CompletionHandler : ICompletionHandler
             new LetCompletionScope(),
             new UsingCompletionScope(),
             new StructCompletionScope(),
+            new UnionCompletionScope(),
             new InlineCompletionScope(plugins),
         };
 
