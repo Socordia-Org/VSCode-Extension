@@ -1,4 +1,5 @@
 ﻿using Backlang.Codeanalysis.Parsing.AST;
+using Backlang.Driver;
 using Loyc;
 using Loyc.Syntax;
 using LSP_Server.Core;
@@ -12,6 +13,16 @@ public class ImplementCompletionScope : ContextCompletionHandler
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
-        yield return new CompletionItem() { Label = "func", Kind = CompletionItemKind.Keyword };
+        if (node[0] is (_, ("'to_expand'", _)))
+        {
+            foreach (var item in Utils.GetTypes())
+            {
+                yield return item;
+            }
+        }
+        else
+        {
+            yield return new CompletionItem() { Label = "func", Kind = CompletionItemKind.Keyword };
+        }
     }
 }
