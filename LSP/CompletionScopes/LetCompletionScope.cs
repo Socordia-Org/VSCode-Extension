@@ -12,6 +12,8 @@ public class LetCompletionScope : ContextCompletionHandler
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
+        //ToDo: add completion for type
+
         if (!node.Attrs.Contains(LNode.Id(Symbols.Mutable)))
         {
             yield return new CompletionItem() { Label = "mut", Kind = CompletionItemKind.Keyword };

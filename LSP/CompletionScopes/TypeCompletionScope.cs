@@ -5,9 +5,9 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
 namespace LSP_Server.CompletionScopes;
 
-public class StructCompletionScope : ContextCompletionHandler
+public class TypeCompletionScope : ContextCompletionHandler
 {
-    public override Symbol[] MatchingSymbols => new[] { CodeSymbols.Struct };
+    public override Symbol[] MatchingSymbols => new[] { CodeSymbols.Struct, CodeSymbols.Class };
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {

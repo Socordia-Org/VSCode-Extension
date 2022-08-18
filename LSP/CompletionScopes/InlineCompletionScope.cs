@@ -1,4 +1,3 @@
-using Backlang.Codeanalysis.Parsing.AST;
 using Backlang.Contracts;
 using Loyc;
 using Loyc.Syntax;
@@ -36,7 +35,7 @@ public class InlineCompletionScope : ContextCompletionHandler
         }
         else
         {
-            if (node.ArgCount == 2 && node.Args[1].Calls(Symbols.Block))
+            if (node.ArgCount == 2 && node.Args[1].Calls(CodeSymbols.Braces))
             {
                 var target = plugins.Targets
                                 .FirstOrDefault(_ => _.HasIntrinsics
