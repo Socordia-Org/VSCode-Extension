@@ -8,13 +8,28 @@
     <Nullable>enable</Nullable>
 	<LangVersion>preview</LangVersion>
 	<EnablePreviewFeatures>True</EnablePreviewFeatures>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Title>Backlang LSP Server</Title>
+	<Authors>Backlang</Authors>
+	<Description>The LSP Server To Build Tools To Develop For Backlang</Description>
+	<PackageProjectUrl>https://www.backlang.org/</PackageProjectUrl>
+	<PackageIcon>logo.png</PackageIcon>
+	<RepositoryUrl>https://github.com/Backlang-Org/VSCode-Extension</RepositoryUrl>
+	<PackageTags>backlang</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Backlang.Codeanalysis" Version="1.0.71" />
-    <PackageReference Include="Backlang.Contracts" Version="1.0.71" />
-    <PackageReference Include="Backlang.Driver" Version="1.0.71" />
+    <PackageReference Include="Backlang.Codeanalysis" Version="1.0.73" />
+    <PackageReference Include="Backlang.Contracts" Version="1.0.73" />
+    <PackageReference Include="Backlang.Driver" Version="1.0.73" />
     <PackageReference Include="OmniSharp.Extensions.LanguageServer" Version="0.19.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
