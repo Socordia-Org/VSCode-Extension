@@ -8,9 +8,9 @@
     ".NETCoreApp,Version=v7.0": {
       "LSP-Server/1.0.0": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.71",
-          "Backlang.Contracts": "1.0.71",
-          "Backlang.Driver": "1.0.71",
+          "Backlang.Codeanalysis": "1.0.73",
+          "Backlang.Contracts": "1.0.73",
+          "Backlang.Driver": "1.0.73",
           "OmniSharp.Extensions.LanguageServer": "0.19.5",
           "System.Reactive.Reference": "4.4.0.0"
         },
@@ -18,21 +18,21 @@
           "LSP-Server.dll": {}
         }
       },
-      "Backlang.Codeanalysis/1.0.71": {
+      "Backlang.Codeanalysis/1.0.73": {
         "dependencies": {
           "Loyc.Syntax": "30.1.0",
           "System.Runtime.Experimental": "7.0.0-preview.2.22152.2"
         },
         "runtime": {
           "lib/net7.0/Backlang.Codeanalysis.dll": {
-            "assemblyVersion": "1.0.71.0",
-            "fileVersion": "1.0.71.0"
+            "assemblyVersion": "1.0.73.0",
+            "fileVersion": "1.0.73.0"
           }
         }
       },
-      "Backlang.Contracts/1.0.71": {
+      "Backlang.Contracts/1.0.73": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.71",
+          "Backlang.Codeanalysis": "1.0.73",
           "CommandLineParser": "2.9.1",
           "Furesoft.Core.CodeDom.Backends": "1.0.46",
           "Furesoft.Core.CodeDom.Compiler": "1.0.46",
@@ -41,27 +41,27 @@
         },
         "runtime": {
           "lib/net7.0/Backlang.Contracts.dll": {
-            "assemblyVersion": "1.0.71.0",
-            "fileVersion": "1.0.71.0"
+            "assemblyVersion": "1.0.73.0",
+            "fileVersion": "1.0.73.0"
           }
         }
       },
-      "Backlang.Core/1.0.71": {
+      "Backlang.Core/1.0.73": {
         "dependencies": {
           "LeMP": "30.1.0"
         },
         "runtime": {
           "lib/net7.0/Backlang.Core.dll": {
-            "assemblyVersion": "1.0.71.0",
-            "fileVersion": "1.0.71.0"
+            "assemblyVersion": "1.0.73.0",
+            "fileVersion": "1.0.73.0"
           }
         }
       },
-      "Backlang.Driver/1.0.71": {
+      "Backlang.Driver/1.0.73": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.71",
-          "Backlang.Contracts": "1.0.71",
-          "Backlang.Core": "1.0.71",
+          "Backlang.Codeanalysis": "1.0.73",
+          "Backlang.Contracts": "1.0.73",
+          "Backlang.Core": "1.0.73",
           "CommandLineParser": "2.9.1",
           "Flo": "0.3.0",
           "Furesoft.Core.CodeDom.Backends": "1.0.46",
@@ -75,8 +75,8 @@
         },
         "runtime": {
           "lib/net7.0/Backlang.Driver.dll": {
-            "assemblyVersion": "1.0.71.0",
-            "fileVersion": "1.0.71.0"
+            "assemblyVersion": "1.0.73.0",
+            "fileVersion": "1.0.73.0"
           }
         }
       },
@@ -1446,33 +1446,33 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Backlang.Codeanalysis/1.0.71": {
+    "Backlang.Codeanalysis/1.0.73": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7LvUUhLyp3K4EU8ToghnrkrkOqZoDHM9pS/7e66A7/j9dOI04PrR3QTtBPQPAtbh1N0d0nmrhZ5HP2F9oYleOQ==",
-      "path": "backlang.codeanalysis/1.0.71",
-      "hashPath": "backlang.codeanalysis.1.0.71.nupkg.sha512"
+      "sha512": "sha512-/WRZygKZIVzbHUKhXWhqPXsQRg369INFkD74oWXbuEKX9AyVhDo5rPXG3sYtFbZEX7P+jQ5Ij63Tab4AVQWcmA==",
+      "path": "backlang.codeanalysis/1.0.73",
+      "hashPath": "backlang.codeanalysis.1.0.73.nupkg.sha512"
     },
-    "Backlang.Contracts/1.0.71": {
+    "Backlang.Contracts/1.0.73": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6wN7Kv7yMz+hcGZPayYJusEQhSFe6ACMdEFIooI02zOYmGSm5o/0ujd8rhb5Y4lJDrxslhrlrtbjBTuYZFqYrw==",
-      "path": "backlang.contracts/1.0.71",
-      "hashPath": "backlang.contracts.1.0.71.nupkg.sha512"
+      "sha512": "sha512-c+LApuPMX087X4qMMPAyRQ+YAAGpKGd2sAEJiREQnm2p91Efdq8BuAC+8WjC42pMpznC/8zwGHeqZa8jetW0cQ==",
+      "path": "backlang.contracts/1.0.73",
+      "hashPath": "backlang.contracts.1.0.73.nupkg.sha512"
     },
-    "Backlang.Core/1.0.71": {
+    "Backlang.Core/1.0.73": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wKifKN7GxP323jV+gKd+Ck4ZQHbHfruV0igT2JQaJ2Uq1UGmoL1ohZB+TJvjm773EwGuQUpuB3l+jksfasuTYQ==",
-      "path": "backlang.core/1.0.71",
-      "hashPath": "backlang.core.1.0.71.nupkg.sha512"
+      "sha512": "sha512-VPCEDp5E9w1TydE0KJYsV/bRwWz+otN+A4ft0OS2KXmlXn9LcLNsDM1SCzFO8e4M0HLlBSBmxmVVNK2sjiJuTA==",
+      "path": "backlang.core/1.0.73",
+      "hashPath": "backlang.core.1.0.73.nupkg.sha512"
     },
-    "Backlang.Driver/1.0.71": {
+    "Backlang.Driver/1.0.73": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-syHYhTu8dernngCiyH4Dwh0a8+uUPJynNHUl7KAj4GDFmmXf/FoE6afD3YJov+lR04MR68VkG/8KM5SobevF6g==",
-      "path": "backlang.driver/1.0.71",
-      "hashPath": "backlang.driver.1.0.71.nupkg.sha512"
+      "sha512": "sha512-OLGOcl072LVM3SG0MgPgMpCv5Z5BSFfX3mu1ca9R3Vyad5PRGSnY08AXHYqsSqTY4SB5xWeFtc4XOEEyiFXfiA==",
+      "path": "backlang.driver/1.0.73",
+      "hashPath": "backlang.driver.1.0.73.nupkg.sha512"
     },
     "CommandLineParser/2.9.1": {
       "type": "package",
