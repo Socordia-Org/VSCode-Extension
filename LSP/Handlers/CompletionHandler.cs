@@ -21,6 +21,7 @@ public partial class CompletionHandler : ICompletionHandler
         _completionManager = new ContextCompletionManager
         {
             new ImplementCompletionScope(),
+            new ImportCompletionScope(),
             new FuncCompletionScope(),
             new LetCompletionScope(),
             new UsingCompletionScope(),
