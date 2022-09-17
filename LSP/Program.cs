@@ -25,6 +25,7 @@ public static class Program
                 .WithHandler<CompletionHandler>()
                 .WithHandler<HoverHandler>()
                 .WithHandler<RenameHandler>()
+                .WithHandler<SignatureHelpHandler>()
                 .WithServerInfo(new ServerInfo() { Name = "Backlang LSP", Version = "1.0.0.0" })
              );
 
