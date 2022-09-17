@@ -61,11 +61,11 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     public Task<Unit> Handle(DidChangeTextDocumentParams request, CancellationToken cancellationToken)
     {
-        var documentPath = request.TextDocument.Uri.ToString();
+        var documentPath = request.TextDocument.Uri.GetFileSystemPath();
         var text = request.ContentChanges.FirstOrDefault()?.Text;
         (LNodeList Tree, List<Message> Messages) = ParseDocument(documentPath, text);
 
-        _bufferManager.AddOrUpdateBuffer(documentPath, SyntaxTree.Factory.AltList(Tree));
+        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(Tree));
 
         var diagnostics = new List<Diagnostic>();
 
@@ -92,15 +92,15 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     public Task<Unit> Handle(DidOpenTextDocumentParams request, CancellationToken cancellationToken)
     {
-        var (Tree, _) = ParseDocument(request.TextDocument.Uri.ToString(), File.ReadAllText(request.TextDocument.Uri.ToString()));
-        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri.ToString(), SyntaxTree.Factory.AltList(Tree));
+        var (Tree, _) = ParseDocument(request.TextDocument.Uri.GetFileSystemPath(), File.ReadAllText(request.TextDocument.Uri.GetFileSystemPath()));
+        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(Tree));
 
         return Unit.Task;
     }
 
     public Task<Unit> Handle(DidCloseTextDocumentParams request, CancellationToken cancellationToken)
     {
-        _bufferManager.Remove(request.TextDocument.Uri.ToString());
+        _bufferManager.Remove(request.TextDocument.Uri.GetFileSystemPath());
 
         return Unit.Task;
     }

@@ -1,13 +1,14 @@
 ﻿using Loyc.Syntax;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 using System.Collections.Concurrent;
 
 namespace LSP_Server;
 
 public class BufferManager
 {
-    private readonly ConcurrentDictionary<string, LNode> _buffers = new();
+    private readonly ConcurrentDictionary<DocumentUri, LNode> _buffers = new();
 
-    public LNode GetBuffer(string documentPath)
+    public LNode GetBuffer(DocumentUri documentPath)
     {
         if (!_buffers.TryGetValue(documentPath, out var buffer))
         {
@@ -17,13 +18,18 @@ public class BufferManager
         return buffer;
     }
 
-    public void AddOrUpdateBuffer(string documentPath, LNode buffer)
+    public void AddOrUpdateBuffer(DocumentUri documentPath, LNode buffer)
     {
         _buffers.AddOrUpdate(documentPath, buffer, (k, v) => buffer);
     }
 
-    public void Remove(string documentPath)
+    public void Remove(DocumentUri documentPath)
     {
         _buffers.Remove(documentPath, out var _);
+    }
+
+    public IEnumerable<LNode> GetBuffers()
+    {
+        return _buffers.Values;
     }
 }
