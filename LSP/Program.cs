@@ -1,5 +1,6 @@
 ﻿using Backlang.Contracts;
 using LSP_Server;
+using LSP_Server.Core;
 using LSP_Server.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -23,6 +24,7 @@ public static class Program
                 .WithHandler<TextDocumentSyncHandler>()
                 .WithHandler<CompletionHandler>()
                 .WithHandler<HoverHandler>()
+                .WithHandler<RenameHandler>()
                 .WithServerInfo(new ServerInfo() { Name = "Backlang LSP", Version = "1.0.0.0" })
              );
 
@@ -33,6 +35,7 @@ public static class Program
     {
         services.AddSingleton<BufferManager>();
         services.AddSingleton<TextDocumentSyncHandler>();
+        services.AddSingleton<Workspace>();
 
         services.AddSingleton(PluginContainer.Load());
     }

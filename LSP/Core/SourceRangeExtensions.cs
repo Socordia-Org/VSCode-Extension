@@ -1,4 +1,6 @@
 ﻿using Loyc.Syntax;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace LSP_Server.Core
 {
@@ -17,6 +19,14 @@ namespace LSP_Server.Core
             else inRight = range.End.Column >= column;
 
             return inLeft && inRight;
+        }
+
+        public static Range ToRange(this SourceRange range)
+        {
+            var start = new Position(range.Start.Line - 1, range.Start.Column - 1);
+            var end = new Position(range.End.Line - 1, range.End.Column - 1);
+
+            return new(start, end);
         }
     }
 }
