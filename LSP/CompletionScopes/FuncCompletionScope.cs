@@ -17,5 +17,7 @@ public class FuncCompletionScope : ContextCompletionHandler
         yield return new CompletionItem() { Label = "inline", Kind = CompletionItemKind.Keyword };
         yield return new CompletionItem() { Label = "while", Kind = CompletionItemKind.Keyword };
         yield return new CompletionItem() { Label = "for", Kind = CompletionItemKind.Keyword };
+
+        yield return new CompletionItem() { Label = "print", Kind = CompletionItemKind.Function };
     }
 }
