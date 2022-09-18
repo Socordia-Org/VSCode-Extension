@@ -13,8 +13,34 @@ namespace LSP_Server.Handlers
                 new(){ Documentation = "The message", Label = "msg"}
             };
 
-            var sigs = new SignatureInformation { Label = "print(msg : string)", ActiveParameter = 0, Parameters = para, Documentation = "Print something to the console" };
-            var sigHelp = new SignatureHelp { ActiveParameter = 0, ActiveSignature = 0, Signatures = Container.From(sigs) };
+            var sigs = new SignatureInformation
+            {
+                Label = "print(msg : string)",
+                ActiveParameter = 0,
+                Parameters = para,
+                Documentation = "Print something to the console"
+            };
+            var sigi = new SignatureInformation
+            {
+                Label = "print(msg : i32)",
+                ActiveParameter = 0,
+                Parameters = para,
+                Documentation = "Print something to the console"
+            };
+            var sigo = new SignatureInformation
+            {
+                Label = "print(msg : obj)",
+                ActiveParameter = 0,
+                Parameters = para,
+                Documentation = "Print something to the console"
+            };
+
+            var sigHelp = new SignatureHelp
+            {
+                ActiveParameter = 0,
+                ActiveSignature = 0,
+                Signatures = Container.From(new[] { sigs, sigi, sigo })
+            };
 
             return Task.FromResult(sigHelp);
         }
