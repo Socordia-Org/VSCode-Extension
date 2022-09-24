@@ -11,6 +11,19 @@ public class ImportCompletionScope : ContextCompletionHandler
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
-        yield return new CompletionItem() { Label = "System", Kind = CompletionItemKind.Module };
+        LNode namespaceNode = node[0];
+
+        if (namespaceNode.Calls(CodeSymbols.Dot))
+        {
+            if (namespaceNode[0].IsIdNamed("Backlang"))
+            {
+                yield return new CompletionItem() { Label = "Core", Kind = CompletionItemKind.Module };
+            }
+        }
+        else
+        {
+            yield return new CompletionItem() { Label = "System", Kind = CompletionItemKind.Module };
+            yield return new CompletionItem() { Label = "Backlang", Kind = CompletionItemKind.Module };
+        }
     }
 }
