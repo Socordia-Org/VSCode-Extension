@@ -1,9 +1,30 @@
-﻿using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+﻿using Furesoft.Core.CodeDom.Compiler.Core.Names;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
 namespace LSP_Server
 {
     public static class Utils
     {
+        public static QualifiedName QualifyNamespace(string @namespace)
+        {
+            var spl = @namespace.Split('.');
+
+            QualifiedName? name = null;
+
+            foreach (var path in spl)
+            {
+                if (name == null)
+                {
+                    name = new SimpleName(path).Qualify();
+                    continue;
+                }
+
+                name = new SimpleName(path).Qualify(name.Value);
+            }
+
+            return name.Value;
+        }
+
         public static IEnumerable<CompletionItem> GetTypes()
         {
             yield return new CompletionItem() { Label = "i8", Kind = CompletionItemKind.TypeParameter };

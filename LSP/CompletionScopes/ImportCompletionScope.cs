@@ -1,4 +1,5 @@
-﻿using Loyc;
+﻿using Backlang.Driver;
+using Loyc;
 using Loyc.Syntax;
 using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -13,8 +14,22 @@ public class ImportCompletionScope : ContextCompletionHandler
     {
         LNode namespaceNode = node[0];
 
+        var qualifiedNs = Utils.QualifyNamespace("System.Collections.Generic");
+        var requestedName = ConversionUtils.GetQualifiedName(namespaceNode);
+
         if (namespaceNode.Calls(CodeSymbols.Dot))
         {
+            for (int i = 0; i < requestedName.PathLength; i++)
+            {
+                if (requestedName[i].ToString() == "#error")
+                {
+                    yield return new CompletionItem() { Label = qualifiedNs[i].ToString(), Kind = CompletionItemKind.Module };
+                    break;
+                }
+
+                if (qualifiedNs[i].ToString() != requestedName[i].ToString()) break;
+            }
+
             if (namespaceNode[0].IsIdNamed("Backlang"))
             {
                 yield return new CompletionItem() { Label = "Core", Kind = CompletionItemKind.Module };
