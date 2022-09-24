@@ -70,8 +70,6 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
         _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
 
-        SemanticChecker.Do(cu);
-
         var diagnostics = new List<Diagnostic>();
 
         foreach (var msg in cu.Messages)
@@ -82,7 +80,8 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
                 CodeDescription = new CodeDescription() { Href = request.TextDocument.Uri.ToUri() },
                 Source = request.TextDocument.Uri.Path,
                 Range = new Range(msg.Range.Start.Line - 1, msg.Range.Start.Column - 1,
-                msg.Range.End.Line - 1, msg.Range.End.Column - 1)
+                msg.Range.End.Line - 1, msg.Range.End.Column - 1),
+                Severity = msg.Severity == MessageSeverity.Warning ? DiagnosticSeverity.Warning : DiagnosticSeverity.Error
             });
         }
 
