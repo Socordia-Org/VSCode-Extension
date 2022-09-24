@@ -16,12 +16,13 @@
 	<PackageIcon>logo.png</PackageIcon>
 	<RepositoryUrl>https://github.com/Backlang-Org/VSCode-Extension</RepositoryUrl>
 	<PackageTags>backlang</PackageTags>
+	<Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Backlang.Codeanalysis" Version="1.0.77" />
-    <PackageReference Include="Backlang.Contracts" Version="1.0.77" />
-    <PackageReference Include="Backlang.Driver" Version="1.0.77" />
+    <PackageReference Include="Backlang.Codeanalysis" Version="1.0.78" />
+    <PackageReference Include="Backlang.Contracts" Version="1.0.78" />
+    <PackageReference Include="Backlang.Driver" Version="1.0.78" />
     <PackageReference Include="OmniSharp.Extensions.LanguageServer" Version="0.19.5" />
   </ItemGroup>
 
