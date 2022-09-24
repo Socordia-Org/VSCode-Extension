@@ -8,35 +8,41 @@ namespace LSP_Server.Handlers
 {
     public class RenameHandler : RenameHandlerBase
     {
-        public RenameHandler(Workspace workspace)
-        {
-            Workspace = workspace;
-        }
+        private readonly Workspace _workspace;
+        private readonly BufferManager _bufferManager;
 
-        public Workspace Workspace { get; set; }
+        public RenameHandler(Workspace workspace, BufferManager bufferManager)
+        {
+            _workspace = workspace;
+            _bufferManager = bufferManager;
+        }
 
         public override Task<WorkspaceEdit?> Handle(RenameParams request, CancellationToken cancellationToken)
         {
-            var identifier = Workspace.GetIdentifierAt(request.TextDocument.Uri, request.Position);
+            var identifier = _workspace.GetIdentifierAt(request.TextDocument.Uri, request.Position);
 
             if (identifier == null)
                 return Task.FromResult(null as WorkspaceEdit);
 
             var newText = request.NewName;
-            var refs = Workspace.FindReferencesTo(request.TextDocument.Uri, identifier);
+            var workspaceEdits = new Dictionary<DocumentUri, IEnumerable<TextEdit>>();
 
-            var edits = refs.Select(o => new TextEdit
+            foreach (var buffer in _bufferManager.GetBuffers())
             {
-                NewText = newText,
-                Range = o.ToRange()
-            }).ToArray();
+                var refs = _workspace.FindReferencesTo(request.TextDocument.Uri, identifier);
+
+                var edits = refs.Select(o => new TextEdit
+                {
+                    NewText = newText,
+                    Range = o.ToRange()
+                }).ToArray();
+
+                workspaceEdits.Add(buffer.Range.Source.FileName, edits);
+            }
 
             return Task.FromResult<WorkspaceEdit?>(new WorkspaceEdit
             {
-                Changes = new Dictionary<DocumentUri, IEnumerable<TextEdit>>
-                {
-                    { request.TextDocument.Uri, edits }
-                }
+                Changes = workspaceEdits
             });
         }
 
