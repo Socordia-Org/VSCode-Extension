@@ -12,6 +12,7 @@ public class RootCompletionScope : ContextCompletionHandler
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
         yield return new CompletionItem() { Label = "using", Kind = CompletionItemKind.Keyword };
+        yield return new CompletionItem() { Label = "import", Kind = CompletionItemKind.Keyword };
         yield return new CompletionItem() { Label = "unit", Kind = CompletionItemKind.Keyword };
         yield return new CompletionItem() { Label = "implement", Kind = CompletionItemKind.Keyword };
         yield return new CompletionItem() { Label = "func", Kind = CompletionItemKind.Keyword };
