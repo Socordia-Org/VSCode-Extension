@@ -2,6 +2,7 @@
 using Backlang.Codeanalysis.Parsing.AST;
 using Backlang.Contracts;
 using LSP_Server;
+using LSP_Server.Core;
 using MediatR;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
@@ -21,12 +22,14 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
     );
 
     private readonly BufferManager _bufferManager;
-    private readonly ILanguageServerFacade protocolProxy;
+    private readonly ILanguageServerFacade _protocollProxy;
+    private readonly Workspace _workspace;
 
-    public TextDocumentSyncHandler(BufferManager bufferManager, ILanguageServerFacade protocolProxy)
+    public TextDocumentSyncHandler(BufferManager bufferManager, ILanguageServerFacade protocolProxy, Workspace workspace)
     {
         _bufferManager = bufferManager;
-        this.protocolProxy = protocolProxy;
+        _protocollProxy = protocolProxy;
+        _workspace = workspace;
     }
 
     public TextDocumentSyncKind Change { get; } = TextDocumentSyncKind.Full;
@@ -85,7 +88,7 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
             });
         }
 
-        protocolProxy.TextDocument.PublishDiagnostics(new PublishDiagnosticsParams()
+        _protocollProxy.TextDocument.PublishDiagnostics(new PublishDiagnosticsParams()
         {
             Diagnostics = diagnostics,
             Uri = request.TextDocument.Uri
@@ -98,6 +101,8 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
     {
         var cu = ParseDocument(request.TextDocument.Uri.GetFileSystemPath(), File.ReadAllText(request.TextDocument.Uri.GetFileSystemPath()));
         _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
+
+        _workspace.OpenFolder();
 
         return Unit.Task;
     }

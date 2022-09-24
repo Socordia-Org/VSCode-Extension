@@ -1,4 +1,5 @@
-﻿using Loyc.Syntax;
+﻿using Backlang.Codeanalysis.Parsing;
+using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
@@ -11,6 +12,20 @@ namespace LSP_Server.Core
         public Workspace(BufferManager bufferManager)
         {
             this._bufferManager = bufferManager;
+        }
+
+        public void OpenFolder()
+        {
+            var fi = new FileInfo(_bufferManager.GetBuffers().First().Range.Source.FileName);
+            var dir = fi.Directory;
+            var files = dir.GetFiles("*.back", SearchOption.AllDirectories).Select(_ => new Uri(_.FullName));
+
+            foreach (var file in files)
+            {
+                DocumentUri documentPath = new DocumentUri(file.Scheme, file.Authority, file.AbsolutePath, file.Query, file.Fragment);
+                var buffer = Parser.Parse(new SourceDocument(documentPath.GetFileSystemPath(), File.ReadAllText(documentPath.GetFileSystemPath())));
+                _bufferManager.AddOrUpdateBuffer(documentPath, SyntaxTree.Factory.AltList(buffer.Body));
+            }
         }
 
         public LNode GetIdentifierAt(DocumentUri uri, Position position)
