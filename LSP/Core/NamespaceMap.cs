@@ -60,7 +60,7 @@ namespace LSP_Server.Core
             QualifiedName tmp = requestedName;
             var ns = namespaces;
 
-            //little hack to make the logic works
+            // little hack to make the logic works
             tmp = tmp.Qualify(tmp.Path[0]);
 
             while (true)
