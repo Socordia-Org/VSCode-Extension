@@ -1,5 +1,6 @@
 ﻿using Backlang.Codeanalysis.Parsing;
-using Loyc.Syntax;
+using Backlang.Codeanalysis.Parsing.AST;
+using Backlang.Contracts;
 using LSP_Server;
 using MediatR;
 using OmniSharp.Extensions.LanguageServer.Protocol;
@@ -63,13 +64,17 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
     {
         var documentPath = request.TextDocument.Uri.GetFileSystemPath();
         var text = request.ContentChanges.FirstOrDefault()?.Text;
-        (LNodeList Tree, List<Message> Messages) = ParseDocument(documentPath, text);
+        var cu = ParseDocument(documentPath, text);
 
-        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(Tree));
+        SemanticChecker.Do(cu);
+
+        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
+
+        SemanticChecker.Do(cu);
 
         var diagnostics = new List<Diagnostic>();
 
-        foreach (var msg in Messages)
+        foreach (var msg in cu.Messages)
         {
             diagnostics.Add(new Diagnostic()
             {
@@ -92,8 +97,8 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     public Task<Unit> Handle(DidOpenTextDocumentParams request, CancellationToken cancellationToken)
     {
-        var (Tree, _) = ParseDocument(request.TextDocument.Uri.GetFileSystemPath(), File.ReadAllText(request.TextDocument.Uri.GetFileSystemPath()));
-        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(Tree));
+        var cu = ParseDocument(request.TextDocument.Uri.GetFileSystemPath(), File.ReadAllText(request.TextDocument.Uri.GetFileSystemPath()));
+        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
 
         return Unit.Task;
     }
@@ -110,7 +115,7 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
         return Unit.Task;
     }
 
-    private static (LNodeList Tree, List<Message> Messages) ParseDocument(string documentPath, string? text)
+    private static CompilationUnit ParseDocument(string documentPath, string? text)
     {
         return Parser.Parse(new SourceDocument(documentPath, text));
     }
