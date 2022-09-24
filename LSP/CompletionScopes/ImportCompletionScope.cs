@@ -13,32 +13,20 @@ public class ImportCompletionScope : ContextCompletionHandler
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
         LNode namespaceNode = node[0];
-
-        var qualifiedNs = Utils.QualifyNamespace("System.Collections.Generic");
         var requestedName = ConversionUtils.GetQualifiedName(namespaceNode);
 
-        if (namespaceNode.Calls(CodeSymbols.Dot))
-        {
-            for (int i = 0; i < requestedName.PathLength; i++)
-            {
-                if (requestedName[i].ToString() == "#error")
-                {
-                    yield return new CompletionItem() { Label = qualifiedNs[i].ToString(), Kind = CompletionItemKind.Module };
-                    break;
-                }
+        var namespaces = new[] {
+            "System.Collections.Generic",
+            "System",
+            "Backlang.Core",
+            "System.Diagnostics"
+        };
 
-                if (qualifiedNs[i].ToString() != requestedName[i].ToString()) break;
-            }
+        var namespaceMap = NamespaceMap.From(namespaces);
 
-            if (namespaceNode[0].IsIdNamed("Backlang"))
-            {
-                yield return new CompletionItem() { Label = "Core", Kind = CompletionItemKind.Module };
-            }
-        }
-        else
-        {
-            yield return new CompletionItem() { Label = "System", Kind = CompletionItemKind.Module };
-            yield return new CompletionItem() { Label = "Backlang", Kind = CompletionItemKind.Module };
-        }
+        var completions = namespaceMap.Resolve(requestedName).ToArray();
+
+        return completions
+            .Select(_ => new CompletionItem { Label = _, Kind = CompletionItemKind.Module });
     }
 }
