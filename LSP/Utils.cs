@@ -50,14 +50,9 @@ namespace LSP_Server
 
         public static IEnumerable<CompletionItem> SuggestNamespace(QualifiedName requestedName)
         {
-            var namespaces = new[] {
-                "System",
-                "System.Diagnostics",
-                "System.Collections.Generic",
-                "Backlang.Core",
-            };
-
-            var namespaceMap = NamespaceMap.From(namespaces);
+            var namespaceMap = NamespaceMap.From(typeof(int).Assembly,
+                typeof(Backlang.Core.CompilerService.MacroLibAttribute).Assembly,
+                typeof(List<>).Assembly);
 
             var completions = namespaceMap.Resolve(requestedName).ToArray();
 

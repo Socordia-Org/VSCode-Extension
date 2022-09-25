@@ -1,5 +1,6 @@
 ﻿using Furesoft.Core.CodeDom.Compiler.Core.Names;
 using System.Collections;
+using System.Reflection;
 
 namespace LSP_Server.Core
 {
@@ -17,6 +18,15 @@ namespace LSP_Server.Core
             }
 
             return map;
+        }
+
+        public static NamespaceMap From(params Assembly[] assemblies)
+        {
+            var namespaces = assemblies.SelectMany(_ => _.GetTypes())
+                                       .Where(_ => _.IsPublic && !string.IsNullOrEmpty(_.Namespace))
+                                       .Select(_ => _.Namespace);
+
+            return From(namespaces);
         }
 
         public void Add(QualifiedName name)
