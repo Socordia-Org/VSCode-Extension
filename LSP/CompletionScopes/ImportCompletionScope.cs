@@ -15,18 +15,6 @@ public class ImportCompletionScope : ContextCompletionHandler
         LNode namespaceNode = node[0];
         var requestedName = ConversionUtils.GetQualifiedName(namespaceNode);
 
-        var namespaces = new[] {
-            "System.Collections.Generic",
-            "System",
-            "Backlang.Core",
-            "System.Diagnostics"
-        };
-
-        var namespaceMap = NamespaceMap.From(namespaces);
-
-        var completions = namespaceMap.Resolve(requestedName).ToArray();
-
-        return completions
-            .Select(_ => new CompletionItem { Label = _, Kind = CompletionItemKind.Module });
+        return Utils.SuggestNamespace(requestedName);
     }
 }

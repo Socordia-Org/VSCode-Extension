@@ -15,7 +15,7 @@ public class ImplementCompletionScope : ContextCompletionHandler
     {
         if (node[0] is (_, ("'to_expand'", _)))
         {
-            foreach (var item in Utils.GetTypes())
+            foreach (var item in Utils.SuggestPrimitiveTypenames())
             {
                 yield return item;
             }

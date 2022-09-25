@@ -72,6 +72,8 @@ namespace LSP_Server.Core
                 if (tmp.IsEmpty) break;
 
                 tmp = tmp.Name;
+
+                if (tmp.IsEmpty) break;
                 ns = ns[tmp.Qualifier].namespaces;
             }
 

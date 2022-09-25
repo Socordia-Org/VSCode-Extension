@@ -1,4 +1,5 @@
 ﻿using Furesoft.Core.CodeDom.Compiler.Core.Names;
+using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
 namespace LSP_Server
@@ -25,7 +26,7 @@ namespace LSP_Server
             return name.Value;
         }
 
-        public static IEnumerable<CompletionItem> GetTypes()
+        public static IEnumerable<CompletionItem> SuggestPrimitiveTypenames()
         {
             yield return new CompletionItem() { Label = "i8", Kind = CompletionItemKind.TypeParameter };
             yield return new CompletionItem() { Label = "u8", Kind = CompletionItemKind.TypeParameter };
@@ -45,6 +46,23 @@ namespace LSP_Server
 
             yield return new CompletionItem() { Label = "char", Kind = CompletionItemKind.TypeParameter };
             yield return new CompletionItem() { Label = "string", Kind = CompletionItemKind.TypeParameter };
+        }
+
+        public static IEnumerable<CompletionItem> SuggestNamespace(QualifiedName requestedName)
+        {
+            var namespaces = new[] {
+                "System",
+                "System.Diagnostics",
+                "System.Collections.Generic",
+                "Backlang.Core",
+            };
+
+            var namespaceMap = NamespaceMap.From(namespaces);
+
+            var completions = namespaceMap.Resolve(requestedName).ToArray();
+
+            return completions
+                .Select(_ => new CompletionItem { Label = _, Kind = CompletionItemKind.Module });
         }
     }
 }
