@@ -103,6 +103,7 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
         _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
 
         _workspace.OpenFolder();
+        var proj = _workspace.GetProjectFile();
 
         return Unit.Task;
     }
