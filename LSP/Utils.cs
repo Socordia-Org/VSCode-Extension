@@ -54,7 +54,7 @@ namespace LSP_Server
                 typeof(Backlang.Core.CompilerService.MacroLibAttribute).Assembly,
                 typeof(List<>).Assembly);
 
-            var completions = namespaceMap.Resolve(requestedName).ToArray();
+            var completions = namespaceMap.Resolve(requestedName);
 
             return completions
                 .Select(_ => new CompletionItem { Label = _, Kind = CompletionItemKind.Module });

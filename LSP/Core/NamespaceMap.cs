@@ -1,4 +1,6 @@
-﻿using Furesoft.Core.CodeDom.Compiler.Core.Names;
+﻿using Backlang.Codeanalysis.Parsing.AST;
+using Backlang.Driver;
+using Furesoft.Core.CodeDom.Compiler.Core.Names;
 using System.Collections;
 using System.Reflection;
 
@@ -10,11 +12,27 @@ namespace LSP_Server.Core
 
         public static NamespaceMap From(IEnumerable<string> namespaceNames)
         {
-            NamespaceMap map = new NamespaceMap();
+            var map = new NamespaceMap();
 
             foreach (var ns in namespaceNames)
             {
                 map.Add(Utils.QualifyNamespace(ns));
+            }
+
+            return map;
+        }
+
+        //ToDo: Implement full namespacemap concat
+        public static NamespaceMap Concat(params NamespaceMap[] maps)
+        {
+            var map = new NamespaceMap();
+
+            foreach (var m in maps)
+            {
+                foreach (var ns in m.namespaces)
+                {
+                    map.namespaces.Add(ns.Key, ns.Value);
+                }
             }
 
             return map;
@@ -27,6 +45,16 @@ namespace LSP_Server.Core
                                        .Select(_ => _.Namespace);
 
             return From(namespaces);
+        }
+
+        public static NamespaceMap From(params CompilationUnit[] trees)
+        {
+            var moduleNames = trees
+                .Select(_ =>
+                    ConversionUtils.GetModuleName(_).ToString()
+                ).Where(_ => !string.IsNullOrEmpty(_));
+
+            return From(moduleNames);
         }
 
         public void Add(QualifiedName name)
