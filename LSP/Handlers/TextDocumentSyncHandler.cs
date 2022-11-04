@@ -69,13 +69,16 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
         var text = request.ContentChanges.FirstOrDefault()?.Text;
         var cu = ParseDocument(documentPath, text);
 
-        SemanticChecker.Do(cu);
+        var context = new CompilerContext();
+        SemanticChecker.Do(cu, context);
+
+        context.Messages.AddRange(cu.Messages);
 
         _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
 
         var diagnostics = new List<Diagnostic>();
 
-        foreach (var msg in cu.Messages)
+        foreach (var msg in context.Messages)
         {
             diagnostics.Add(new Diagnostic()
             {
