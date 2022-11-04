@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v7.0": {
-      "LSP-Server/1.0.2": {
+      "LSP-Server/1.0.3": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.78",
-          "Backlang.Contracts": "1.0.78",
-          "Backlang.Driver": "1.0.78",
-          "Microsoft.Build": "17.3.1",
+          "Backlang.Codeanalysis": "1.0.81",
+          "Backlang.Contracts": "1.0.81",
+          "Backlang.Driver": "1.0.81",
+          "Microsoft.Build": "17.3.2",
           "OmniSharp.Extensions.LanguageServer": "0.19.5",
           "System.Reactive.Reference": "4.4.0.0"
         },
@@ -19,54 +19,55 @@
           "LSP-Server.dll": {}
         }
       },
-      "Backlang.Codeanalysis/1.0.78": {
+      "Backlang.Codeanalysis/1.0.81": {
         "dependencies": {
           "Loyc.Syntax": "30.1.0",
+          "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime.Experimental": "7.0.0-preview.2.22152.2"
         },
         "runtime": {
           "lib/net7.0/Backlang.Codeanalysis.dll": {
-            "assemblyVersion": "1.0.78.0",
-            "fileVersion": "1.0.78.0"
+            "assemblyVersion": "1.0.81.0",
+            "fileVersion": "1.0.81.0"
           }
         }
       },
-      "Backlang.Contracts/1.0.78": {
+      "Backlang.Contracts/1.0.81": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.78",
+          "Backlang.Codeanalysis": "1.0.81",
           "CommandLineParser": "2.9.1",
-          "Furesoft.Core.CodeDom.Backends": "1.0.46",
-          "Furesoft.Core.CodeDom.Compiler": "1.0.46",
+          "Furesoft.Core.CodeDom.Backends": "1.0.48",
+          "Furesoft.Core.CodeDom.Compiler": "1.0.48",
           "LeMP": "30.1.0",
           "System.ComponentModel.Composition": "6.0.0"
         },
         "runtime": {
           "lib/net7.0/Backlang.Contracts.dll": {
-            "assemblyVersion": "1.0.78.0",
-            "fileVersion": "1.0.78.0"
+            "assemblyVersion": "1.0.81.0",
+            "fileVersion": "1.0.81.0"
           }
         }
       },
-      "Backlang.Core/1.0.78": {
+      "Backlang.Core/1.0.81": {
         "dependencies": {
           "LeMP": "30.1.0"
         },
         "runtime": {
           "lib/net7.0/Backlang.Core.dll": {
-            "assemblyVersion": "1.0.78.0",
-            "fileVersion": "1.0.78.0"
+            "assemblyVersion": "1.0.81.0",
+            "fileVersion": "1.0.81.0"
           }
         }
       },
-      "Backlang.Driver/1.0.78": {
+      "Backlang.Driver/1.0.81": {
         "dependencies": {
-          "Backlang.Codeanalysis": "1.0.78",
-          "Backlang.Contracts": "1.0.78",
-          "Backlang.Core": "1.0.78",
+          "Backlang.Codeanalysis": "1.0.81",
+          "Backlang.Contracts": "1.0.81",
+          "Backlang.Core": "1.0.81",
           "CommandLineParser": "2.9.1",
           "Flo": "0.3.0",
-          "Furesoft.Core.CodeDom.Backends": "1.0.46",
-          "Furesoft.Core.CodeDom.Compiler": "1.0.46",
+          "Furesoft.Core.CodeDom.Backends": "1.0.48",
+          "Furesoft.Core.CodeDom.Compiler": "1.0.48",
           "LeMP": "30.1.0",
           "Loyc.Syntax": "30.1.0",
           "System.ComponentModel.Composition": "6.0.0",
@@ -76,8 +77,8 @@
         },
         "runtime": {
           "lib/net7.0/Backlang.Driver.dll": {
-            "assemblyVersion": "1.0.78.0",
-            "fileVersion": "1.0.78.0"
+            "assemblyVersion": "1.0.81.0",
+            "fileVersion": "1.0.81.0"
           }
         }
       },
@@ -100,31 +101,19 @@
           }
         }
       },
-      "Furesoft.Core.CodeDom/1.0.46": {
+      "Furesoft.Core.CodeDom.Backends/1.0.48": {
         "dependencies": {
-          "System.Configuration.ConfigurationManager": "6.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Furesoft.Core.CodeDom.dll": {
-            "assemblyVersion": "1.0.46.0",
-            "fileVersion": "1.0.46.0"
-          }
-        }
-      },
-      "Furesoft.Core.CodeDom.Backends/1.0.46": {
-        "dependencies": {
-          "Furesoft.Core.CodeDom": "1.0.46",
-          "Furesoft.Core.CodeDom.Compiler": "1.0.46",
+          "Furesoft.Core.CodeDom.Compiler": "1.0.48",
           "Mono.Cecil": "0.11.4"
         },
         "runtime": {
           "lib/net6.0/Furesoft.Core.CodeDom.Backends.dll": {
-            "assemblyVersion": "1.0.46.0",
-            "fileVersion": "1.0.46.0"
+            "assemblyVersion": "1.0.48.0",
+            "fileVersion": "1.0.48.0"
           }
         }
       },
-      "Furesoft.Core.CodeDom.Compiler/1.0.46": {
+      "Furesoft.Core.CodeDom.Compiler/1.0.48": {
         "runtime": {
           "lib/net6.0/Furesoft.Core.CodeDom.Compiler.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -253,10 +242,10 @@
           }
         }
       },
-      "Microsoft.Build/17.3.1": {
+      "Microsoft.Build/17.3.2": {
         "dependencies": {
-          "Microsoft.Build.Framework": "17.3.1",
-          "Microsoft.NET.StringTools": "17.3.1",
+          "Microsoft.Build.Framework": "17.3.2",
+          "Microsoft.NET.StringTools": "17.3.2",
           "System.Collections.Immutable": "6.0.0",
           "System.Configuration.ConfigurationManager": "6.0.0",
           "System.Reflection.Metadata": "6.0.0",
@@ -269,18 +258,18 @@
         "runtime": {
           "lib/net6.0/Microsoft.Build.dll": {
             "assemblyVersion": "15.1.0.0",
-            "fileVersion": "17.3.1.41501"
+            "fileVersion": "17.3.2.46306"
           }
         }
       },
-      "Microsoft.Build.Framework/17.3.1": {
+      "Microsoft.Build.Framework/17.3.2": {
         "dependencies": {
           "System.Security.Permissions": "6.0.0"
         },
         "runtime": {
           "lib/net6.0/Microsoft.Build.Framework.dll": {
             "assemblyVersion": "15.1.0.0",
-            "fileVersion": "17.3.1.41501"
+            "fileVersion": "17.3.2.46306"
           }
         }
       },
@@ -394,7 +383,7 @@
           }
         }
       },
-      "Microsoft.NET.StringTools/17.3.1": {
+      "Microsoft.NET.StringTools/17.3.2": {
         "dependencies": {
           "System.Memory": "4.5.5",
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
@@ -402,7 +391,7 @@
         "runtime": {
           "lib/net6.0/Microsoft.NET.StringTools.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "17.3.1.41501"
+            "fileVersion": "17.3.2.46306"
           }
         }
       },
@@ -1524,38 +1513,38 @@
     }
   },
   "libraries": {
-    "LSP-Server/1.0.2": {
+    "LSP-Server/1.0.3": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Backlang.Codeanalysis/1.0.78": {
+    "Backlang.Codeanalysis/1.0.81": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-g711aaTNKdBFYgS2fTkRUu6GgNp+9c/6juGpS+gHOHxpTWytaAgqS7kHcSCmpUcsgZdQlqbS8GHCq0mrQW9IBw==",
-      "path": "backlang.codeanalysis/1.0.78",
-      "hashPath": "backlang.codeanalysis.1.0.78.nupkg.sha512"
+      "sha512": "sha512-RPlQuvAyp3/Oh6NKOptwyx8mM5NhQv1Sdli5133KWs57Q4zy37DeARUS329F0gbDyqyi3k4gPuERBfF0RwMuWQ==",
+      "path": "backlang.codeanalysis/1.0.81",
+      "hashPath": "backlang.codeanalysis.1.0.81.nupkg.sha512"
     },
-    "Backlang.Contracts/1.0.78": {
+    "Backlang.Contracts/1.0.81": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JrXjixDA4VK0xG9uSjrb7XhpTOpBr3kMwcgAhGyqQ8E0HR/ENeqoiBfee+c+ByD7EipARMLGkPP/+nGVnietOQ==",
-      "path": "backlang.contracts/1.0.78",
-      "hashPath": "backlang.contracts.1.0.78.nupkg.sha512"
+      "sha512": "sha512-h7gJ6XMYxICJctNB/Tj2F/E9IEQjku+WyU5x2wmMw4V+xokjuzUm1FqPaerO2FwUke+pgGQpustZO5Ztsk2MZA==",
+      "path": "backlang.contracts/1.0.81",
+      "hashPath": "backlang.contracts.1.0.81.nupkg.sha512"
     },
-    "Backlang.Core/1.0.78": {
+    "Backlang.Core/1.0.81": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CZdO54QyvjeTooZ83lv1TT9wsfVF+bsByDafZ04Gf97z/vQQRDivfLdQEBRKQKVkq1IUTeJ1YoBlq6ohluWulA==",
-      "path": "backlang.core/1.0.78",
-      "hashPath": "backlang.core.1.0.78.nupkg.sha512"
+      "sha512": "sha512-6UqY2GG3xVS/bD5NLHytpdp1T4ucydbgaKHgNHLwH6xYV+9S25mzFgP05oFaJKmL2WnY1E/H7ODN4vb+RIZO1w==",
+      "path": "backlang.core/1.0.81",
+      "hashPath": "backlang.core.1.0.81.nupkg.sha512"
     },
-    "Backlang.Driver/1.0.78": {
+    "Backlang.Driver/1.0.81": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xMZpxmYK4s0sSBpH/ONNq93oo0GyKCLOfeTJoRIYaaOPpFDmSu6XaEuWIEDQK1boykHVn463UC7DJTKcpVMNAA==",
-      "path": "backlang.driver/1.0.78",
-      "hashPath": "backlang.driver.1.0.78.nupkg.sha512"
+      "sha512": "sha512-I82cSXRQagPCQfW9EZLTHNWMkfFxFECrLOgzwSTQ6pLW2ULYMgqLDwK+kMoGBK5OxHsDy21SKoNuf2+MTSsRXg==",
+      "path": "backlang.driver/1.0.81",
+      "hashPath": "backlang.driver.1.0.81.nupkg.sha512"
     },
     "CommandLineParser/2.9.1": {
       "type": "package",
@@ -1571,26 +1560,19 @@
       "path": "flo/0.3.0",
       "hashPath": "flo.0.3.0.nupkg.sha512"
     },
-    "Furesoft.Core.CodeDom/1.0.46": {
+    "Furesoft.Core.CodeDom.Backends/1.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gVqcuN5n9vy20FpunrUoNpxl9O0HjBuv7XB0nbXaArXP+LRuovMmwJhAuKEVicQ2Oc5E49qGCNsM//i2GuqaEg==",
-      "path": "furesoft.core.codedom/1.0.46",
-      "hashPath": "furesoft.core.codedom.1.0.46.nupkg.sha512"
+      "sha512": "sha512-kxrreJ7uhfd0fY/wLbiBPO6/KBpyIAoHnpWHHdiVrPrIMkSaqZ7lDoJJV8fxGzyw114VhlhleuNcahuofgQ45w==",
+      "path": "furesoft.core.codedom.backends/1.0.48",
+      "hashPath": "furesoft.core.codedom.backends.1.0.48.nupkg.sha512"
     },
-    "Furesoft.Core.CodeDom.Backends/1.0.46": {
+    "Furesoft.Core.CodeDom.Compiler/1.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-9+NrbgotQMo1hp39/LQdJZZxh8niUeKQ4UHVVQWUzY8iAoSynJoyNKwD7yT+zdCqGWzC8gUzwyoj7zoAVB1Spg==",
-      "path": "furesoft.core.codedom.backends/1.0.46",
-      "hashPath": "furesoft.core.codedom.backends.1.0.46.nupkg.sha512"
-    },
-    "Furesoft.Core.CodeDom.Compiler/1.0.46": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-TZhXl6+ViiVXONMAgL+DSIvyzW8C5tiYrB+F1iIIv5XX+TZ8ja++mDLiIIR9eSlxwwydLPy/x72YgpBLGVKg8Q==",
-      "path": "furesoft.core.codedom.compiler/1.0.46",
-      "hashPath": "furesoft.core.codedom.compiler.1.0.46.nupkg.sha512"
+      "sha512": "sha512-lpy2r/Dn0+dFN5Se0bd1LNQ1MQ0lbeEIfNodpVUJxZkmXIKlCCU+TTrygcM1DGO8d4TFLLEulY1BAkX2v1hytg==",
+      "path": "furesoft.core.codedom.compiler/1.0.48",
+      "hashPath": "furesoft.core.codedom.compiler.1.0.48.nupkg.sha512"
     },
     "LeMP/30.1.0": {
       "type": "package",
@@ -1662,19 +1644,19 @@
       "path": "microsoft.bcl.asyncinterfaces/1.1.1",
       "hashPath": "microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512"
     },
-    "Microsoft.Build/17.3.1": {
+    "Microsoft.Build/17.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-80Ef2s925VGMn1Rt03N/yMft78kiy02mU3MxgR5I9EYpHlZmFDrwNsjtWb2HUUqNjVnxAVM6HQ7a1gV0I2bFmA==",
-      "path": "microsoft.build/17.3.1",
-      "hashPath": "microsoft.build.17.3.1.nupkg.sha512"
+      "sha512": "sha512-k5+7CfF/aM/hykfnrF93VhbUnhGfpJkGaD+ce8VlhLnOqDyts7WV+8Up3YCP6qmXMZFeeH/Cp23w2wSliP0mBw==",
+      "path": "microsoft.build/17.3.2",
+      "hashPath": "microsoft.build.17.3.2.nupkg.sha512"
     },
-    "Microsoft.Build.Framework/17.3.1": {
+    "Microsoft.Build.Framework/17.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cUlLl0HTN/sG79STW5bB9wKNC5sPjv7j7XPBKuaN6u7P67n81Jo4WXiyJ6Wd+ZQs8VtUnoccSn104GfVSbEkUw==",
-      "path": "microsoft.build.framework/17.3.1",
-      "hashPath": "microsoft.build.framework.17.3.1.nupkg.sha512"
+      "sha512": "sha512-iGfJt6rm/vIEowBG6qNX2Udn7UagI6MzalDwwdkDUkSwhvvrGCnDLphyRABAwrrsWHTD/LJlUAJsbW1SkC4CUQ==",
+      "path": "microsoft.build.framework/17.3.2",
+      "hashPath": "microsoft.build.framework.17.3.2.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration/2.0.0": {
       "type": "package",
@@ -1746,12 +1728,12 @@
       "path": "microsoft.extensions.primitives/2.0.0",
       "hashPath": "microsoft.extensions.primitives.2.0.0.nupkg.sha512"
     },
-    "Microsoft.NET.StringTools/17.3.1": {
+    "Microsoft.NET.StringTools/17.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-14xy4Bw8CQKFEnb7BNhyZx7Z10JNWv8KwuFVLYIWb4EuNuj7AjojEa/SY43fz0bNkoUl+dyAym11Fl+Pbd5VfA==",
-      "path": "microsoft.net.stringtools/17.3.1",
-      "hashPath": "microsoft.net.stringtools.17.3.1.nupkg.sha512"
+      "sha512": "sha512-3sIZECEDSY9kP7BqPLOSIHLsiqv0TSU5cIGAMung+NrefIooo1tBMVRt598CGz+kUF1xlbOsO8nPAYpgfokx/Q==",
+      "path": "microsoft.net.stringtools/17.3.2",
+      "hashPath": "microsoft.net.stringtools.17.3.2.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.1": {
       "type": "package",
