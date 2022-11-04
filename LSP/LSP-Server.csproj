@@ -20,9 +20,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Backlang.Codeanalysis" Version="1.0.80" />
-    <PackageReference Include="Backlang.Contracts" Version="1.0.80" />
-    <PackageReference Include="Backlang.Driver" Version="1.0.80" />
+    <PackageReference Include="Backlang.Codeanalysis" Version="1.0.81" />
+    <PackageReference Include="Backlang.Contracts" Version="1.0.81" />
+    <PackageReference Include="Backlang.Driver" Version="1.0.81" />
     <PackageReference Include="Microsoft.Build" Version="17.3.2" />
     <PackageReference Include="OmniSharp.Extensions.LanguageServer" Version="0.19.5" />
   </ItemGroup>
