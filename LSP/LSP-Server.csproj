@@ -16,7 +16,7 @@
 	<PackageIcon>logo.png</PackageIcon>
 	<RepositoryUrl>https://github.com/Backlang-Org/VSCode-Extension</RepositoryUrl>
 	<PackageTags>backlang</PackageTags>
-	<Version>1.0.3</Version>
+	<Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
