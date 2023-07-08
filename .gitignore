@@ -9,3 +9,4 @@ Source/package-lock.json
 
 Source/out/
 LSP/bin/*
+LSP/.idea/.idea.LSP-Server/.idea/
