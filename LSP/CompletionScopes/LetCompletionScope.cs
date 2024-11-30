@@ -8,15 +8,13 @@ namespace LSP_Server.CompletionScopes;
 
 public class LetCompletionScope : ContextCompletionHandler
 {
-    public override Symbol[] MatchingSymbols => new[] { CodeSymbols.Var, };
+    public override Symbol[] MatchingSymbols => [CodeSymbols.Var];
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
         //ToDo: add completion for type
 
         if (!node.Attrs.Contains(LNode.Id(Symbols.Mutable)))
-        {
-            yield return new CompletionItem() { Label = "mut", Kind = CompletionItemKind.Keyword };
-        }
+            yield return new CompletionItem { Label = "mut", Kind = CompletionItemKind.Keyword };
     }
 }

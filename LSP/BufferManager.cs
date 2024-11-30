@@ -1,6 +1,6 @@
-﻿using Loyc.Syntax;
+﻿using System.Collections.Concurrent;
+using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol;
-using System.Collections.Concurrent;
 
 namespace LSP_Server;
 
@@ -10,12 +10,7 @@ public class BufferManager
 
     public LNode GetBuffer(DocumentUri documentPath)
     {
-        if (!_buffers.TryGetValue(documentPath, out var buffer))
-        {
-            return LNode.Missing;
-        }
-
-        return buffer;
+        return !_buffers.TryGetValue(documentPath, out var buffer) ? LNode.Missing : buffer;
     }
 
     public void AddOrUpdateBuffer(DocumentUri documentPath, LNode buffer)
@@ -25,7 +20,7 @@ public class BufferManager
 
     public void Remove(DocumentUri documentPath)
     {
-        _buffers.Remove(documentPath, out var _);
+        _buffers.Remove(documentPath, out _);
     }
 
     public IEnumerable<LNode> GetBuffers()

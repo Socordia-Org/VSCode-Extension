@@ -1,76 +1,66 @@
-﻿using Loyc;
+﻿using System.Collections;
+using Loyc;
 using Loyc.Syntax;
 using LSP_Server.CompletionScopes;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
-using System.Collections;
 
-namespace LSP_Server.Core
+namespace LSP_Server.Core;
+
+public class ContextCompletionManager : IEnumerable<ContextCompletionHandler>
 {
-    public class ContextCompletionManager : IEnumerable<ContextCompletionHandler>
+    private readonly List<ContextCompletionHandler> _handlers = [];
+
+    public RootCompletionScope RootScope { get; set; }
+
+    public IEnumerator<ContextCompletionHandler> GetEnumerator()
     {
-        private List<ContextCompletionHandler> _handlers = new();
+        return _handlers.GetEnumerator();
+    }
 
-        public RootCompletionScope RootScope { get; set; }
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return _handlers.GetEnumerator();
+    }
 
-        public IEnumerator<ContextCompletionHandler> GetEnumerator()
+    public void Add(ContextCompletionHandler handler)
+    {
+        _handlers.Add(handler);
+    }
+
+    public IEnumerable<CompletionItem> GetItems(LNodeList matchings)
+    {
+        if (matchings.IsEmpty) // root scope
+            return RootScope.GetItems(LNode.Missing);
+
+        var items = new List<CompletionItem>();
+
+        foreach (var matchingNode in matchings)
         {
-            return _handlers.GetEnumerator();
+            var scope = GetMatchingScope(matchingNode);
+
+            if (scope == null) continue;
+
+            items = [..scope.GetItems(matchingNode)];
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _handlers.GetEnumerator();
-        }
+        return items;
+    }
 
-        public void Add(ContextCompletionHandler handler)
-        {
-            _handlers.Add(handler);
-        }
+    private static bool MatchCall(Symbol[] matchingSymbols, LNode matchingNode)
+    {
+        var matched = false;
 
-        public IEnumerable<CompletionItem> GetItems(LNodeList matchings)
-        {
-            if (matchings.IsEmpty) // root scope
-            {
-                return RootScope.GetItems(LNode.Missing);
-            }
+        foreach (var symbol in matchingSymbols) matched |= matchingNode.Calls(symbol);
 
-            var items = new List<CompletionItem>();
+        return matched;
+    }
 
-            foreach (var matchingNode in matchings)
-            {
-                var scope = GetMatchingScope(matchingNode);
+    private ContextCompletionHandler GetMatchingScope(LNode matchingNode)
+    {
+        foreach (var handler in _handlers)
+            if (MatchCall(handler.MatchingSymbols, matchingNode))
+                return handler;
 
-                if (scope == null) continue;
-
-                items = new(scope.GetItems(matchingNode));
-            }
-
-            return items;
-        }
-
-        private static bool MatchCall(Symbol[] matchingSymbols, LNode matchingNode)
-        {
-            bool matched = false;
-
-            foreach (var symbol in matchingSymbols)
-            {
-                matched |= matchingNode.Calls(symbol);
-            }
-
-            return matched;
-        }
-
-        private ContextCompletionHandler GetMatchingScope(LNode matchingNode)
-        {
-            foreach (var handler in _handlers)
-            {
-                if (MatchCall(handler.MatchingSymbols, matchingNode))
-                {
-                    return handler;
-                }
-            }
-
-            return null;
-        }
+        return null;
     }
 }

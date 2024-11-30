@@ -8,7 +8,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
 namespace LSP_Server.Handlers;
 
-public partial class CompletionHandler : ICompletionHandler
+public class CompletionHandler : ICompletionHandler
 {
     private readonly BufferManager _bufferManager;
 
@@ -18,8 +18,8 @@ public partial class CompletionHandler : ICompletionHandler
     {
         _bufferManager = bufferManager;
 
-        _completionManager = new ContextCompletionManager
-        {
+        _completionManager =
+        [
             new ImplementCompletionScope(),
             new ImportCompletionScope(),
             new FuncCompletionScope(),
@@ -27,19 +27,20 @@ public partial class CompletionHandler : ICompletionHandler
             new UsingCompletionScope(),
             new TypeCompletionScope(),
             new UnionCompletionScope(),
-            new InlineCompletionScope(plugins),
-        };
+            new InlineCompletionScope(plugins)
+        ];
 
         _completionManager.RootScope = new RootCompletionScope();
     }
 
-    public CompletionRegistrationOptions GetRegistrationOptions(CompletionCapability capability, ClientCapabilities clientCapabilities)
+    public CompletionRegistrationOptions GetRegistrationOptions(CompletionCapability capability,
+        ClientCapabilities clientCapabilities)
     {
         return new CompletionRegistrationOptions
         {
             DocumentSelector = TextDocumentSyncHandler.DocumentSelector,
             WorkDoneProgress = false,
-            TriggerCharacters = new[] { " ", ".", "(", },
+            TriggerCharacters = new[] { " ", ".", "(" }
         };
     }
 
@@ -65,10 +66,10 @@ public partial class CompletionHandler : ICompletionHandler
         {
             if (node == null || node.Range.Length == 0) continue;
 
-            if (node != null && node.Range.Contains(request.Position.Line + 1, request.Position.Character + 1)) // +1, because zero based index in lsp host
-            {
+            if (node != null &&
+                node.Range.Contains(request.Position.Line + 1,
+                    request.Position.Character + 1)) // + 1, because zero based index in lsp host
                 matchings.Add(node);
-            }
         }
 
         return matchings;

@@ -7,7 +7,7 @@ namespace LSP_Server.CompletionScopes;
 
 public class UnionCompletionScope : ContextCompletionHandler
 {
-    public override Symbol[] MatchingSymbols => new[] { CodeSymbols.Struct };
+    public override Symbol[] MatchingSymbols => [CodeSymbols.Struct];
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
