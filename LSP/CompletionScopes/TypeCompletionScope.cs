@@ -7,7 +7,7 @@ namespace LSP_Server.CompletionScopes;
 
 public class TypeCompletionScope : ContextCompletionHandler
 {
-    public override Symbol[] MatchingSymbols => new[] { CodeSymbols.Struct, CodeSymbols.Class };
+    public override Symbol[] MatchingSymbols => [CodeSymbols.Struct, CodeSymbols.Class];
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {

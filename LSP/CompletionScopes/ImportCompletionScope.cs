@@ -8,11 +8,11 @@ namespace LSP_Server.CompletionScopes;
 
 public class ImportCompletionScope : ContextCompletionHandler
 {
-    public override Symbol[] MatchingSymbols => new[] { CodeSymbols.Import };
+    public override Symbol[] MatchingSymbols => [CodeSymbols.Import];
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
-        LNode namespaceNode = node[0];
+        var namespaceNode = node[0];
         var requestedName = ConversionUtils.GetQualifiedName(namespaceNode);
 
         return Utils.SuggestNamespace(requestedName);

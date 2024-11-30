@@ -7,18 +7,13 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 
 namespace LSP_Server.Handlers;
 
-public class HoverHandler : IHoverHandler
+public class HoverHandler(BufferManager bufferManager, ILanguageServerFacade protocolProxy)
+    : IHoverHandler
 {
-    private readonly ILanguageServerFacade protocolProxy;
-    private readonly BufferManager _bufferManager;
+    private readonly ILanguageServerFacade protocolProxy = protocolProxy;
 
-    public HoverHandler(BufferManager bufferManager, ILanguageServerFacade protocolProxy)
-    {
-        _bufferManager = bufferManager;
-        this.protocolProxy = protocolProxy;
-    }
-
-    public HoverRegistrationOptions GetRegistrationOptions(HoverCapability capability, ClientCapabilities clientCapabilities)
+    public HoverRegistrationOptions GetRegistrationOptions(HoverCapability capability,
+        ClientCapabilities clientCapabilities)
     {
         return new HoverRegistrationOptions
         {
@@ -30,7 +25,7 @@ public class HoverHandler : IHoverHandler
     public Task<Hover?> Handle(HoverParams request, CancellationToken token)
     {
         var documentPath = request.TextDocument.Uri.ToString();
-        var buffer = _bufferManager.GetBuffer(documentPath);
+        var buffer = bufferManager.GetBuffer(documentPath);
 
         LNode matchingNode = LNode.Missing;
 
@@ -38,29 +33,22 @@ public class HoverHandler : IHoverHandler
         {
             if (node.Range.Length == 0 || node == null) continue;
 
-            if (node.Range.Contains(request.Position.Line + 1, request.Position.Character + 1))
-            {
-                matchingNode = node;
-            }
+            if (node.Range.Contains(request.Position.Line + 1, request.Position.Character + 1)) matchingNode = node;
         }
 
         if (matchingNode != LNode.Missing)
         {
-            string content = "";
+            var content = "";
 
             if (matchingNode.ArgCount == 1 && matchingNode.Args[0].HasValue)
-            {
                 content = matchingNode.Name.Name;
-            }
             else
-            {
                 content = matchingNode.ToString();
-            }
 
-            return Task.FromResult<Hover?>(new Hover()
+            return Task.FromResult<Hover?>(new Hover
             {
                 Contents =
-                    new MarkedStringsOrMarkupContent(new MarkupContent()
+                    new MarkedStringsOrMarkupContent(new MarkupContent
                     {
                         Value = matchingNode.Name.Name + ": " + content,
                         Kind = MarkupKind.PlainText

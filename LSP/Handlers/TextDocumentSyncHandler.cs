@@ -1,7 +1,6 @@
 ﻿using Backlang.Codeanalysis.Parsing;
 using Backlang.Codeanalysis.Parsing.AST;
 using Backlang.Contracts;
-using LSP_Server;
 using LSP_Server.Core;
 using MediatR;
 using OmniSharp.Extensions.LanguageServer.Protocol;
@@ -12,51 +11,23 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server.Capabilities;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
-internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
+namespace LSP_Server.Handlers;
+
+internal class TextDocumentSyncHandler(
+    BufferManager bufferManager,
+    ILanguageServerFacade protocolProxy,
+    Workspace workspace)
+    : ITextDocumentSyncHandler
 {
-    public static readonly DocumentSelector DocumentSelector = new(
-        new DocumentFilter()
+    public static readonly TextDocumentSelector DocumentSelector = new(
+        new TextDocumentFilter
         {
             Pattern = "**/*.back"
         }
     );
 
-    private readonly BufferManager _bufferManager;
-    private readonly ILanguageServerFacade _protocollProxy;
-    private readonly Workspace _workspace;
-
-    public TextDocumentSyncHandler(BufferManager bufferManager, ILanguageServerFacade protocolProxy, Workspace workspace)
-    {
-        _bufferManager = bufferManager;
-        _protocollProxy = protocolProxy;
-        _workspace = workspace;
-    }
-
     public TextDocumentSyncKind Change { get; } = TextDocumentSyncKind.Full;
 
-    public TextDocumentChangeRegistrationOptions GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)
-    {
-        return new TextDocumentChangeRegistrationOptions()
-        {
-            DocumentSelector = DocumentSelector,
-            SyncKind = Change,
-        };
-    }
-
-    TextDocumentOpenRegistrationOptions IRegistration<TextDocumentOpenRegistrationOptions, SynchronizationCapability>.GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)
-    {
-        return new TextDocumentOpenRegistrationOptions() { DocumentSelector = DocumentSelector };
-    }
-
-    TextDocumentCloseRegistrationOptions IRegistration<TextDocumentCloseRegistrationOptions, SynchronizationCapability>.GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)
-    {
-        return new TextDocumentCloseRegistrationOptions() { DocumentSelector = DocumentSelector };
-    }
-
-    TextDocumentSaveRegistrationOptions IRegistration<TextDocumentSaveRegistrationOptions, SynchronizationCapability>.GetRegistrationOptions(SynchronizationCapability capability, ClientCapabilities clientCapabilities)
-    {
-        return null;
-    }
 
     public TextDocumentAttributes GetTextDocumentAttributes(DocumentUri uri)
     {
@@ -74,24 +45,24 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
         context.Messages.AddRange(cu.Messages);
 
-        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
+        bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
 
         var diagnostics = new List<Diagnostic>();
 
         foreach (var msg in context.Messages)
-        {
-            diagnostics.Add(new Diagnostic()
+            diagnostics.Add(new Diagnostic
             {
                 Message = msg.Text,
-                CodeDescription = new CodeDescription() { Href = request.TextDocument.Uri.ToUri() },
+                CodeDescription = new CodeDescription { Href = request.TextDocument.Uri.ToUri() },
                 Source = request.TextDocument.Uri.Path,
                 Range = new Range(msg.Range.Start.Line - 1, msg.Range.Start.Column - 1,
-                msg.Range.End.Line - 1, msg.Range.End.Column - 1),
-                Severity = msg.Severity == MessageSeverity.Warning ? DiagnosticSeverity.Warning : DiagnosticSeverity.Error
+                    msg.Range.End.Line - 1, msg.Range.End.Column - 1),
+                Severity = msg.Severity == MessageSeverity.Warning
+                    ? DiagnosticSeverity.Warning
+                    : DiagnosticSeverity.Error
             });
-        }
 
-        _protocollProxy.TextDocument.PublishDiagnostics(new PublishDiagnosticsParams()
+        protocolProxy.TextDocument.PublishDiagnostics(new PublishDiagnosticsParams
         {
             Diagnostics = diagnostics,
             Uri = request.TextDocument.Uri
@@ -102,18 +73,19 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
 
     public Task<Unit> Handle(DidOpenTextDocumentParams request, CancellationToken cancellationToken)
     {
-        var cu = ParseDocument(request.TextDocument.Uri.GetFileSystemPath(), File.ReadAllText(request.TextDocument.Uri.GetFileSystemPath()));
-        _bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
+        var cu = ParseDocument(request.TextDocument.Uri.GetFileSystemPath(),
+            File.ReadAllText(request.TextDocument.Uri.GetFileSystemPath()));
+        bufferManager.AddOrUpdateBuffer(request.TextDocument.Uri, SyntaxTree.Factory.AltList(cu.Body));
 
-        _workspace.OpenFolder();
-        var proj = _workspace.GetProjectFile();
+        workspace.OpenFolder();
+        var proj = workspace.GetProjectFile();
 
         return Unit.Task;
     }
 
     public Task<Unit> Handle(DidCloseTextDocumentParams request, CancellationToken cancellationToken)
     {
-        _bufferManager.Remove(request.TextDocument.Uri.GetFileSystemPath());
+        bufferManager.Remove(request.TextDocument.Uri.GetFileSystemPath());
 
         return Unit.Task;
     }
@@ -126,5 +98,42 @@ internal class TextDocumentSyncHandler : ITextDocumentSyncHandler
     private static CompilationUnit ParseDocument(string documentPath, string? text)
     {
         return Parser.Parse(new SourceDocument(documentPath, text));
+    }
+
+    TextDocumentChangeRegistrationOptions IRegistration<TextDocumentChangeRegistrationOptions, TextSynchronizationCapability>.GetRegistrationOptions(TextSynchronizationCapability capability,
+        ClientCapabilities clientCapabilities)
+    {
+        return new TextDocumentChangeRegistrationOptions
+        {
+            DocumentSelector = DocumentSelector,
+            SyncKind = Change
+        };
+    }
+
+    TextDocumentOpenRegistrationOptions IRegistration<TextDocumentOpenRegistrationOptions, TextSynchronizationCapability>.GetRegistrationOptions(TextSynchronizationCapability capability,
+        ClientCapabilities clientCapabilities)
+    {
+        return new TextDocumentOpenRegistrationOptions
+        {
+            DocumentSelector = DocumentSelector
+        };
+    }
+
+    TextDocumentCloseRegistrationOptions IRegistration<TextDocumentCloseRegistrationOptions, TextSynchronizationCapability>.GetRegistrationOptions(TextSynchronizationCapability capability,
+        ClientCapabilities clientCapabilities)
+    {
+        return new TextDocumentCloseRegistrationOptions
+        {
+            DocumentSelector = DocumentSelector
+        };
+    }
+
+    TextDocumentSaveRegistrationOptions IRegistration<TextDocumentSaveRegistrationOptions, TextSynchronizationCapability>.GetRegistrationOptions(TextSynchronizationCapability capability,
+        ClientCapabilities clientCapabilities)
+    {
+        return new TextDocumentSaveRegistrationOptions
+        {
+            DocumentSelector = DocumentSelector
+        };
     }
 }

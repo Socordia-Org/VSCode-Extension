@@ -9,20 +9,14 @@ namespace LSP_Server.CompletionScopes;
 
 public class ImplementCompletionScope : ContextCompletionHandler
 {
-    public override Symbol[] MatchingSymbols => new[] { Symbols.Implementation };
+    public override Symbol[] MatchingSymbols => [Symbols.Implementation];
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
         if (node[0] is (_, ("'to_expand'", _)))
-        {
             foreach (var item in Utils.SuggestPrimitiveTypenames())
-            {
                 yield return item;
-            }
-        }
         else
-        {
-            yield return new CompletionItem() { Label = "func", Kind = CompletionItemKind.Keyword };
-        }
+            yield return new CompletionItem { Label = "func", Kind = CompletionItemKind.Keyword };
     }
 }

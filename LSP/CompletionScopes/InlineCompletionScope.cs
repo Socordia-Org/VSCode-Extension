@@ -6,22 +6,15 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
 namespace LSP_Server.CompletionScopes;
 
-public class InlineCompletionScope : ContextCompletionHandler
+public class InlineCompletionScope(PluginContainer plugins) : ContextCompletionHandler
 {
-    private PluginContainer plugins;
-
-    public InlineCompletionScope(PluginContainer plugins)
-    {
-        this.plugins = plugins;
-    }
-
-    public override Symbol[] MatchingSymbols => new[] { (Symbol)"inline" };
+    public override Symbol[] MatchingSymbols => [(Symbol)"inline"];
 
     public override IEnumerable<CompletionItem> GetItems(LNode node)
     {
         if (node.ArgCount == 0)
         {
-            yield return new CompletionItem() { Label = "dotnet", Kind = CompletionItemKind.Value };
+            yield return new CompletionItem { Label = "dotnet", Kind = CompletionItemKind.Value };
 
             var availableTargets = plugins.Targets
                 .Where(_ => _.HasIntrinsics)
@@ -29,32 +22,26 @@ public class InlineCompletionScope : ContextCompletionHandler
                 .ToArray();
 
             foreach (var target in availableTargets)
-            {
-                yield return new CompletionItem() { Label = target, Kind = CompletionItemKind.Value };
-            }
+                yield return new CompletionItem { Label = target, Kind = CompletionItemKind.Value };
         }
         else
         {
             if (node.ArgCount == 2 && node.Args[1].Calls(CodeSymbols.Braces))
             {
                 var target = plugins.Targets
-                                .FirstOrDefault(_ => _.HasIntrinsics
-                                    && _.Name == node.Args[0].Name.Name);
+                    .FirstOrDefault(_ => _.HasIntrinsics
+                                         && _.Name == node.Args[0].Name.Name);
 
                 if (target != null)
                 {
                     var intrinsicNames = GetAvailableIntrinsicNames(target.IntrinsicType);
 
                     foreach (var name in intrinsicNames)
-                    {
-                        yield return new CompletionItem() { Label = name, Kind = CompletionItemKind.Method };
-                    }
+                        yield return new CompletionItem { Label = name, Kind = CompletionItemKind.Method };
 
                     var constants = GetAllConstants(target.IntrinsicType);
                     foreach (var constant in constants)
-                    {
-                        yield return new CompletionItem() { Label = constant, Kind = CompletionItemKind.Constant };
-                    }
+                        yield return new CompletionItem { Label = constant, Kind = CompletionItemKind.Constant };
                 }
             }
         }
@@ -73,10 +60,7 @@ public class InlineCompletionScope : ContextCompletionHandler
         {
             var names = Enum.GetNames(field.FieldType);
 
-            foreach (var name in names)
-            {
-                yield return name;
-            }
+            foreach (var name in names) yield return name;
         }
     }
 }
