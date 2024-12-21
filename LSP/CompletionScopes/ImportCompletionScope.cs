@@ -1,10 +1,10 @@
 ﻿using Backlang.Driver;
 using Loyc;
 using Loyc.Syntax;
-using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using Socordia.LSP.Core;
 
-namespace LSP_Server.CompletionScopes;
+namespace Socordia.LSP.CompletionScopes;
 
 public class ImportCompletionScope : ContextCompletionHandler
 {

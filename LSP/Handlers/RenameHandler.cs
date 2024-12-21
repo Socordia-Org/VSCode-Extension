@@ -1,10 +1,10 @@
-﻿using LSP_Server.Core;
-using OmniSharp.Extensions.LanguageServer.Protocol;
+﻿using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using Socordia.LSP.Core;
 
-namespace LSP_Server.Handlers;
+namespace Socordia.LSP.Handlers;
 
 public class RenameHandler(Workspace workspace, BufferManager bufferManager) : RenameHandlerBase
 {

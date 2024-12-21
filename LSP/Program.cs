@@ -1,13 +1,13 @@
 ﻿using System.Diagnostics;
 using Backlang.Contracts;
-using LSP_Server.Core;
-using LSP_Server.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Server;
+using Socordia.LSP.Core;
+using Socordia.LSP.Handlers;
 
-namespace LSP_Server;
+namespace Socordia.LSP;
 
 public static class Program
 {

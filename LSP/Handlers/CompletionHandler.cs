@@ -1,12 +1,12 @@
 ﻿using Backlang.Contracts;
 using Loyc.Syntax;
-using LSP_Server.CompletionScopes;
-using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using Socordia.LSP.CompletionScopes;
+using Socordia.LSP.Core;
 
-namespace LSP_Server.Handlers;
+namespace Socordia.LSP.Handlers;
 
 public class CompletionHandler : ICompletionHandler
 {

@@ -68,11 +68,11 @@ export class AssetGenerator {
     }
 
     /**
-     * Retrieves all file paths with the '.backsproj' extension,
+     * Retrieves all file paths with the '.scsproj' extension,
      * relative to the workspace root.
      */
-    public async getBackprojFilePaths(): Promise<string[]> {
-        const pattern = path.join(this.workspaceRoot, '**', '*.backproj').replace(/\\/g, '/');
+    public async getScprojFilePaths(): Promise<string[]> {
+        const pattern = path.join(this.workspaceRoot, '**', '*.scproj').replace(/\\/g, '/');
         const paths = await globAsync(pattern);
         return paths.map(p => path.relative(this.workspaceRoot, p));
     }
@@ -103,13 +103,19 @@ export class AssetGenerator {
     public getLaunchDescriptionForProject(project: string): vscode.DebugConfiguration {
         const dllName = `${path.parse(project).name}.dll`;
         return {
-            name: 'Backlang: Launch Console App',
-            type: 'backdbg',
-            request: 'launch',
-            preLaunchTask: 'build',
-            // TODO: Hardcoded config and framework
-            program: path.join('${workspaceFolder}', 'bin', 'Debug', 'net7.0', dllName),
-            stopAtEntry: false,
+          name: "Socordia: Launch Console App",
+          type: "dotnetdbg",
+          request: "launch",
+          preLaunchTask: "build",
+          // TODO: Hardcoded config and framework
+          program: path.join(
+            "${workspaceFolder}",
+            "bin",
+            "Debug",
+            "net7.0",
+            dllName
+          ),
+          stopAtEntry: false,
         };
     }
 }

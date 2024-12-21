@@ -2,7 +2,7 @@
 using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 
-namespace LSP_Server;
+namespace Socordia.LSP;
 
 public class BufferManager
 {

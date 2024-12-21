@@ -14,7 +14,7 @@ export function updateWithDefaultSettings(target: ConfigurationTarget): Promise<
         'dotnetCommand',
         'sdkVersion',
     ];
-    const config = workspace.getConfiguration('backlang');
+    const config = workspace.getConfiguration("socordia");
     return Promise.all(settingsToInclude.map(setting =>
         config.update(setting, config.get(setting), target)));
 }

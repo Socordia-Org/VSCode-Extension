@@ -1,11 +1,11 @@
 ﻿using Loyc.Syntax;
-using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
+using Socordia.LSP.Core;
 
-namespace LSP_Server.Handlers;
+namespace Socordia.LSP.Handlers;
 
 public class HoverHandler(BufferManager bufferManager, ILanguageServerFacade protocolProxy)
     : IHoverHandler

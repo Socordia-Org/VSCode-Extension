@@ -10,18 +10,18 @@ import { Result } from "./result";
 /**
  * The language server package name.
  */
-export const LanguageServerToolName = 'Backlang.LanguageServer';
+export const LanguageServerToolName = 'Socordia.LanguageServer';
 
 /**
  * The language server command that can be used to start it up.
  */
-export const LanguageServerCommandName = 'back-langserver';
+export const LanguageServerCommandName = 'sc-langserver';
 
 
 /**
  * The debug adapter command that can be used to start it up.
  */
-export const DebugAdapterCommandName = 'back-debugadapter';
+export const DebugAdapterCommandName = 'sc-debugadapter';
 
 /**
  * Checks, if a given .NET tool has updates. It works by passing in a 'check-for-updates' flag for the tool,

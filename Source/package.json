@@ -1,7 +1,7 @@
 {
-  "name": "back",
-  "displayName": "Backlang",
-  "description": "Backlang is focused on language orientated programming",
+  "name": "sc",
+  "displayName": "Socordia",
+  "description": "Socordia is focused on language orientated programming",
   "icon": "media/logo.png",
   "version": "0.0.84",
   "publisher": "furesoft",
@@ -10,26 +10,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Backlang-Team/VSCode-Extension"
+    "url": "https://github.com/Socordia-Org/VSCode-Extension"
   },
   "categories": [
     "Programming Languages",
     "Languages"
   ],
   "activationEvents": [
-    "onLanguage:back"
+    "onLanguage:sc"
   ],
   "main": "./dist/extension",
   "contributes": {
     "languages": [
       {
-        "id": "back",
+        "id": "sc",
         "aliases": [
-          "Backlang",
-          "back"
+          "Socordia",
+          "sc"
         ],
         "extensions": [
-          ".back"
+          ".sc"
         ],
         "configuration": "./language-configuration.json",
         "icon": {
@@ -40,14 +40,14 @@
     ],
     "grammars": [
       {
-        "language": "back",
-        "scopeName": "source.back",
-        "path": "./syntaxes/back.tmLanguage.json"
+        "language": "sc",
+        "scopeName": "source.sc",
+        "path": "./syntaxes/sc.tmLanguage.json"
       }
     ],
     "snippets": [
       {
-        "language": "back",
+        "language": "sc",
         "path": "./snippets/snippets.code-snippets"
       }
     ]
@@ -69,5 +69,8 @@
     "vscode-languageclient": "^8.0.1",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "sc": "file:"
   }
 }

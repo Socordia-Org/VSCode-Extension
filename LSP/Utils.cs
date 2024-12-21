@@ -1,9 +1,9 @@
 ﻿using Backlang.Core.CompilerService;
 using Furesoft.Core.CodeDom.Compiler.Core.Names;
-using LSP_Server.Core;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using Socordia.LSP.Core;
 
-namespace LSP_Server;
+namespace Socordia.LSP;
 
 public static class Utils
 {

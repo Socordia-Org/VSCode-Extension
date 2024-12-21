@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using Loyc;
 using Loyc.Syntax;
-using LSP_Server.CompletionScopes;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using Socordia.LSP.CompletionScopes;
 
-namespace LSP_Server.Core;
+namespace Socordia.LSP.Core;
 
 public class ContextCompletionManager : IEnumerable<ContextCompletionHandler>
 {

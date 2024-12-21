@@ -4,7 +4,7 @@ using Microsoft.Build.Construction;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
-namespace LSP_Server.Core;
+namespace Socordia.LSP.Core;
 
 public class Workspace(BufferManager bufferManager)
 {

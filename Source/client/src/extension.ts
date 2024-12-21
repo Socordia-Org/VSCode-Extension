@@ -24,19 +24,24 @@ export function activate(context: ExtensionContext) {
 
     // Options to control the language client
     let clientOptions: LanguageClientOptions = {
-        documentSelector: [
-            {
-                pattern: '**/*.back',
-            }
-        ],
-        
-        synchronize: {
-            configurationSection: 'BacklangLanguageServer',
-            fileEvents: workspace.createFileSystemWatcher('**/*.back')
+      documentSelector: [
+        {
+          pattern: "**/*.sc",
         },
-    }
+      ],
 
-    const client = new LanguageClient('BacklangLanguageServer', 'Backlang Language Server', serverOptions, clientOptions);
+      synchronize: {
+        configurationSection: "SocordiaLanguageServer",
+        fileEvents: workspace.createFileSystemWatcher("**/*.sc"),
+      },
+    };
+
+    const client = new LanguageClient(
+      "SocordiaLanguageServer",
+      "Socordia Language Server",
+      serverOptions,
+      clientOptions
+    );
     
     client.start();
 }

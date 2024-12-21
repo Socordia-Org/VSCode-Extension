@@ -4,7 +4,7 @@ using Backlang.Codeanalysis.Parsing.AST;
 using Backlang.Driver;
 using Furesoft.Core.CodeDom.Compiler.Core.Names;
 
-namespace LSP_Server.Core;
+namespace Socordia.LSP.Core;
 
 internal class NamespaceMap : IEnumerable<UnqualifiedName>
 {

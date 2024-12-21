@@ -2,7 +2,7 @@
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
-namespace LSP_Server.Handlers;
+namespace Socordia.LSP.Handlers;
 
 public class SignatureHelpHandler : SignatureHelpHandlerBase
 {

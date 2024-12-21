@@ -2,7 +2,7 @@
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
-namespace LSP_Server.Core;
+namespace Socordia.LSP.Core;
 
 public static class SourceRangeExtensions
 {

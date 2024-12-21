@@ -2,7 +2,7 @@
 using Loyc.Syntax;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
-namespace LSP_Server.Core;
+namespace Socordia.LSP.Core;
 
 public abstract class ContextCompletionHandler
 {
