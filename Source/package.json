@@ -17,19 +17,19 @@
     "Languages"
   ],
   "activationEvents": [
-    "onLanguage:sc"
+    "onLanguage:scs"
   ],
   "main": "./dist/extension",
   "contributes": {
     "languages": [
       {
-        "id": "sc",
+        "id": "scs",
         "aliases": [
           "Socordia",
-          "sc"
+          "scs"
         ],
         "extensions": [
-          ".sc"
+          ".scs"
         ],
         "configuration": "./language-configuration.json",
         "icon": {
@@ -40,14 +40,14 @@
     ],
     "grammars": [
       {
-        "language": "sc",
+        "language": "scs",
         "scopeName": "source.sc",
         "path": "./syntaxes/sc.tmLanguage.json"
       }
     ],
     "snippets": [
       {
-        "language": "sc",
+        "language": "scs",
         "path": "./snippets/snippets.code-snippets"
       }
     ]
